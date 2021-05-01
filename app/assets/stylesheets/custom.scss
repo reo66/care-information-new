@@ -1,9 +1,26 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* トップページボタン */
+
+.top_btn {
+  text-align: center;
+
+}
+
+/* トップページ配置 */
+.top_title {
+  position:fixed;
+  width:600px;
+  height:400px;
+  top:50%;
+  left:50%;
+  margin-left:-300px;
+  margin-top:-200px;
+ }
+
 
 /* universal */
 
