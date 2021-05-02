@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_05_02_051106) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "department"
-    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end
