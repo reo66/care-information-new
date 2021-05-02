@@ -3,25 +3,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* トップページボタン */
-
-.top_btn {
-  margin-top: 50px;
-  text-align: center;
-
+body{
+  padding-top: 60px;
 }
 
-/* トップページ配置 */
+
 
 
 
 /* universal */
 
-body {
-  padding-top: 60px;
-  background-image:url("picture-3651039_1920.png");
-  background-repeat: repeat;
-}
+
 
 section {
   overflow: auto;

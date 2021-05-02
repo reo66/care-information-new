@@ -1,3 +1,28 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "custom.scss";
+
+
+/* トップページボタン */
+
+
+
+.top_btn {
+  margin-top: 50px;
+  text-align: center;
+
+}
+
+/* トップページ配置 */
+
+#home{
+  margin: 0 auto;
+  width:100%;
+  padding-top: 60px;
+  background-image:url("picture-3651039_1920.png");
+  background-repeat: repeat;
+  }
+
