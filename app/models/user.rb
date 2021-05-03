@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # 「remember_token」という仮想の属性を作成します。
+  attr_accessor :remember_token
+
   validates :name, presence: true, length: { maximum: 50 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
@@ -25,5 +28,10 @@ class User < ApplicationRecord
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
-  
+
+  # トークンがダイジェストと一致すればtrueを返します。
+  def authenticated?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
 end
