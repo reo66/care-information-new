@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :department, presence: true
 
   # 渡された文字列のハッシュ値を返します。
