@@ -1,17 +1,21 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @care_user.name) %>
 <div>
   <table class="table table-bordered table-condensed user-table">
     <tr>
       <th>name</th>
-      <td><%= @user.name %></td>
+      <td><%= @care_user.name %></td>
     </tr>
     <tr>
-      <th>department</th>
-      <td><%= @user.department  %></td>
+      <th>age</th>
+      <td><%= @care_user.age %></td>
     </tr>  
     <tr>
-      <th>unconfirmed</th>
-      <td></td>
+      <th>gender</th>
+      <td><%= @care_user.gender %></td>
+    </tr> 
+    <tr>
+      <th>scool</th>
+      <td><%= @care_user.school %></td>
     </tr> 
   </table>
   <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>
