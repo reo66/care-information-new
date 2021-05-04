@@ -5,7 +5,7 @@
   <%= f.text_field :name, class: "form-control" %>
 
   <%= f.label :department, class: "label-#{yield(:class_text)}" %>
-  <%= f.select :department, class: "form-control" %>
+  <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択"},{class: "form-control"} %>
 
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
