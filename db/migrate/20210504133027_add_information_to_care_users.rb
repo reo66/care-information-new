@@ -4,7 +4,7 @@ class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
     # 契約日数
     add_column :care_users, :contract, :integer
     # 利用曜日
-    add_column :care_users, :use_day, :datetime
+    add_column :care_users, :use_day, :date
     # 住まい
     add_column :care_users, :house, :string
     # 障害名

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "contract"
-    t.datetime "use_day"
+    t.date "use_day"
     t.string "house"
     t.string "disabled"
     t.string "eat"
