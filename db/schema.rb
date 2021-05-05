@@ -10,15 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_062715) do
+ActiveRecord::Schema.define(version: 2021_05_04_133027) do
 
   create_table "care_users", force: :cascade do |t|
+    t.string "image"
+    t.string "department"
     t.string "name"
     t.integer "age"
     t.integer "gender"
     t.string "school"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contract"
+    t.datetime "use_day"
+    t.string "house"
+    t.string "disabled"
+    t.string "eat"
+    t.string "evacuation"
+    t.string "cange_clothes"
+    t.boolean "diapers"
+    t.boolean "pat"
+    t.string "allergy"
+    t.boolean "seizures"
+    t.boolean "medicine"
+    t.string "communicate_a"
+    t.string "communicate_summary_a"
+    t.string "communicate_b"
+    t.string "communicate_summary_b"
+    t.text "indoor"
+    t.text "outdoor"
+    t.text "summary"
+    t.boolean "cuser_confirm"
   end
 
   create_table "users", force: :cascade do |t|
