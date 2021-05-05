@@ -26,7 +26,7 @@ class CareUsersController < ApplicationController
   private
 
   def care_user_params
-    params.require(:care_user).permit(:image, :department, :name, :age, :gender, :scool, :contract,:use_day,:house,:disabled,:eat,:evacuation,:cange_clothes,:diapers,:pat,:allergy,:seizures,:medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary,:cuser_confirm)
+    params.require(:care_user).permit(:image, :department, :name, :age, :gender, :scool, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers,:pat,:allergy,:seizures,:medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary,:cuser_confirm, use_day:[])
   end
 
 end

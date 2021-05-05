@@ -30,13 +30,68 @@
       <%= f.number_field :contract, class: "form-control", min: 1, max: 31 %>
 
       <div class="field">
-      <%= f.label :use_day, class: "label-Careuserup" %><br>
-      <% use_day = ["月","火","水","木","金","土","日","祝","長期休み"]%>
-      <% use_day.each do |u| %>
-      <%= f.check_box :use_day, {multiple: true},u, nil %>
-      <%= f.label :use_day, u, class: "label-Careuserup" %>
-  <% end %>
-</div>   
+        <%= f.label :use_day, class: "label-Careuserup" %><br>
+          <% use_day = ["月","火","水","木","金","土","日","祝","長期休み"]%>
+          <% use_day.each do |u| %>
+          <%= f.check_box :use_day, {multiple: true},u, nil %>
+          <%= f.label :use_day, u, class: "label-Careuserup" %>
+        <% end %>
+      </div>   
+      <%= f.label :house, class: "label-Careuserup" %>
+      <%= f.text_field :house, class: "form-control",placeholder: "ex：nakagawa" %>
+
+      <%= f.label :disabled, class: "label-Careuserup" %>
+      <%= f.text_field :disabled, class: "form-control",placeholder: "ex：autism" %>
+
+      <%= f.label :eat, class: "label-Careuserup" %>
+      <%= f.select :eat, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["食べこぼし注意","食べこぼし注意"]],{include_blank: "食事自立度を選択"},{class: "form-control"} %>
+
+      <%= f.label :evacuation, class: "label-Careuserup" %>
+      <%= f.select :evacuation, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["要声がけ","要声がけ"]],{include_blank: "排泄自立度を選択"},{class: "form-control"} %>
+
+      <%= f.label :diapers, class: "label-Careuserup" %>
+      <%= f.check_box :diapers, {}, true, false %><br>
+
+      <%= f.label :pat, class: "label-Careuserup" %>
+      <%= f.check_box :pat, {}, true, false %><br>
+
+      <%= f.label :cange_clothes, class: "label-Careuserup" %>
+      <%= f.select :cange_clothes, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"]],{include_blank: "着替え自立度を選択"},{class: "form-control"} %>
+
+      <%= f.label :allergy, class: "label-Careuserup" %>
+      <%= f.text_field :allergy, class: "form-control",placeholder: "アレルギーがあれば記入" %>
+
+      <%= f.label :medicine, class: "label-Careuserup" %>
+      <%= f.check_box :medicine, {}, true, false %><br>
+
+      <%= f.label :seizures, class: "label-Careuserup" %>
+      <%= f.check_box :seizures, {}, true, false %><br>
+
+      <%= f.label :communicate_a, class: "label-Careuserup" %>
+      <%= f.select :communicate_a, [["良好","良好"],["援助により可","援助により可"],["困難","困難"]],{include_blank: "利用者⇨援助者の意思疎通状態を選択"},{class: "form-control"} %>
+
+      <%= f.label :communicate_summary_a, class: "label-Careuserup" %>
+      <%= f.text_field :communicate_summary_a, class: "form-control",placeholder: "上記の概要があれば記入" %>
+
+      <%= f.label :communicate_b, class: "label-Careuserup" %>
+      <%= f.select :communicate_b, [["良好","良好"],["援助により可","援助により可"],["困難","困難"]],{include_blank: "援助者⇨利用者の意思疎通状態を選択"},{class: "form-control"} %>
+
+      <%= f.label :communicate_summary_b, class: "label-Careuserup" %>
+      <%= f.text_field :communicate_summary_b, class: "form-control",placeholder: "上記の概要があれば記入" %>
+
+      <%= f.label :indoor, class: "label-Careuserup" %>
+      <%= f.text_area :indoor, class: "form-control",placeholder: "室内の様子を記入" %>
+
+      <%= f.label :outdoor, class: "label-Careuserup" %>
+      <%= f.text_area :outdoor, class: "form-control",placeholder: "戸外の様子を記入" %>
+
+      <%= f.label :summary, class: "label-Careuserup" %>
+      <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>
+
+
+
+
+
       <%= f.submit "新規作成", class: "btn btn-primary btn-block btn-signup" %>
     <% end %>
   </div>
