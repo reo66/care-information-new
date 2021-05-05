@@ -8,9 +8,8 @@
       <%= f.label :image, class: "label-Careuserup" %>
       <%= f.file_field :image %>
 
-      <%= f.label :name, class: "label-Careuserup" %>
-      <%= f.text_field :name, class: "form-control" %>
-
+      <%= f.label :department, class: "label-Careuserup" %>
+      <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択"},{class: "form-control"} %>
 
       <%= f.label :name, class: "label-Careuserup" %>
       <%= f.text_field :name, class: "form-control" %>
@@ -27,6 +26,17 @@
       <%= f.label :school, class: "label-Careuserup" %>
       <%= f.text_field :school, class: "form-control" %>
 
+      <%= f.label :contract, class: "label-Careuserup" %>
+      <%= f.number_field :contract, class: "form-control", min: 1, max: 31 %>
+
+      <div class="field">
+      <%= f.label :use_day, class: "label-Careuserup" %><br>
+      <% use_day = ["月","火","水","木","金","土","日","祝","長期休み"]%>
+      <% use_day.each do |u| %>
+      <%= f.check_box :use_day, {multiple: true},u, nil %>
+      <%= f.label :use_day, u, class: "label-Careuserup" %>
+  <% end %>
+</div>   
       <%= f.submit "新規作成", class: "btn btn-primary btn-block btn-signup" %>
     <% end %>
   </div>
