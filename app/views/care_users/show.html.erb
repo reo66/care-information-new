@@ -1,23 +1,30 @@
 <% provide(:title, @care_user.name) %>
+
+<div class="img">
+
 <div>
-  <table class="table table-bordered table-condensed user-table">
-    <tr>
-      <th>name</th>
-      <td><%= @care_user.name %></td>
-    </tr>
-    <tr>
-      <th>age</th>
-      <td><%= @care_user.age %></td>
-    </tr>  
-    <tr>
-      <th>gender</th>
-      <td><%= @care_user.gender %></td>
-    </tr> 
-    <tr>
-      <th>scool</th>
-      <td><%= @care_user.school %></td>
-    </tr> 
-  </table>
+    <p><%= image_tag @care_user.image.url, class: "user-icon" if @care_user.image %></p>
+</div>    
+
+
+    <table class="table table-bordered table-condensed user-table">
+      <tr>
+        <th>name</th>
+        <td><%= @care_user.name %></td>
+      </tr>
+      <tr>
+        <th>age</th>
+        <td><%= @care_user.age %></td>
+      </tr>  
+      <tr>
+        <th>gender</th>
+        <td><%= @care_user.gender %></td>
+      </tr> 
+      <tr>
+        <th>scool</th>
+        <td><%= @care_user.school %></td>
+      </tr> 
+    </table>
   <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>
   <%= link_to  "新利用者作成", new_care_user_path, class: "btn btn-md btn-primary" %>
 </div>
