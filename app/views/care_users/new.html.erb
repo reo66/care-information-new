@@ -35,17 +35,18 @@
       <%= f.label :use_day, class: "label-Careuserup" %><br>
       <% @use_day.each do |use_day| %>
         <%= f.check_box :use_day,{ multiple: true,checked: @care_user.use_day.present? ? @care_user.use_day.split(",").include?(use_day) : false }, use_day, nil %>
-        <%= use_day%>
-      <% end %>
-        <%
-=begin%>
- <%= f.label :house, class: "label-Careuserup" %>
+        <span><%= use_day %></span>
+      <% end %><br>
+
+      <%= f.label :house, class: "label-Careuserup" %>
       <%= f.text_field :house, class: "form-control",placeholder: "ex：nakagawa" %>
 
       <%= f.label :disabled, class: "label-Careuserup" %>
       <%= f.text_field :disabled, class: "form-control",placeholder: "ex：autism" %>
 
-      <%= f.label :eat, class: "label-Careuserup" %>
+    
+
+ <%= f.label :eat, class: "label-Careuserup" %>
       <%= f.select :eat, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["食べこぼし注意","食べこぼし注意"]],{include_blank: "食事自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :evacuation, class: "label-Careuserup" %>
@@ -88,9 +89,9 @@
       <%= f.text_area :outdoor, class: "form-control",placeholder: "戸外の様子を記入" %>
 
       <%= f.label :summary, class: "label-Careuserup" %>
-      <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %> 
-<%
-=end%>  
+      <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>  
+
+
 
 
 
