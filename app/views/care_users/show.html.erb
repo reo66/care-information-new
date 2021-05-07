@@ -71,7 +71,13 @@
       <tr>
         <th>allergy</th>
         <td><%= @care_user.allergy %></td>
-      </tr> 
+      </tr>
+      <% if @care_user.allergy_text.present? %>
+        <tr>
+          <th>allergy_text</th>
+          <td><%= @care_user.allergy_text %></td>
+        </tr>
+      <% end %> 
       <tr>
         <th>medicine</th>
         <td><%= @care_user.medicine %></td>
