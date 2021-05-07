@@ -9,6 +9,10 @@
 
     <table class="table table-bordered table-condensed user-table">
       <tr>
+        <th>department</th>
+        <td><%= @care_user.department %></td>
+      </tr> 
+      <tr>
         <th>name</th>
         <td><%= @care_user.name %></td>
       </tr>
@@ -23,6 +27,18 @@
       <tr>
         <th>scool</th>
         <td><%= @care_user.school %></td>
+      </tr> 
+      <tr>
+        <th>grade</th>
+        <td><%= @care_user.grade %></td>
+      </tr> 
+      <tr>
+        <th>contract</th>
+        <td><%= @care_user.contract %></td>
+      </tr> 
+      <tr>
+        <th>use_day</th>
+        <td><%= @care_user.use_day %></td>
       </tr> 
     </table>
   <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>

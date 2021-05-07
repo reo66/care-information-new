@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
     t.string "school"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "grade"
     t.integer "contract"
-    t.date "use_day"
+    t.string "use_day"
     t.string "house"
     t.string "disabled"
     t.string "eat"
