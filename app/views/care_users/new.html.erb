@@ -46,7 +46,7 @@
 
     
 
- <%= f.label :eat, class: "label-Careuserup" %>
+      <%= f.label :eat, class: "label-Careuserup" %>
       <%= f.select :eat, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["食べこぼし注意","食べこぼし注意"]],{include_blank: "食事自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :evacuation, class: "label-Careuserup" %>
@@ -62,7 +62,11 @@
       <%= f.select :cange_clothes, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"]],{include_blank: "着替え自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :allergy, class: "label-Careuserup" %>
-      <%= f.text_field :allergy, class: "form-control",placeholder: "アレルギーがあれば記入" %>
+      <%= f.select :allergy, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "ag"} %>
+      <div id="allergy">
+        <%= f.label :allergy_text, class: "label-Careuserup" %>
+        <%= f.text_field :allergy_text, class: "form-control" %>
+      </div>
 
       <%= f.label :medicine, class: "label-Careuserup" %>
       <%= f.check_box :medicine, {}, true, false %><br>
@@ -102,3 +106,26 @@
     <% end %>
   </div>
 </div>
+
+
+<script>
+
+	// 初期表示を非表示にする
+  $('#allergy').hide();
+  
+  $(function(){
+    $("#ag").change(function(){
+        var name = $('#ag').val()
+        if(name == '有'){
+            $("#allergy").show();
+        }
+        else if(name == '無'){
+            $("#allergy").hide();
+        }
+    });
+});
+  
+
+	
+
+</script>

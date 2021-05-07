@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
     t.boolean "diapers"
     t.boolean "pat"
     t.string "allergy"
+    t.string "allergy_text"
     t.boolean "seizures"
     t.boolean "medicine"
     t.string "communicate_a"

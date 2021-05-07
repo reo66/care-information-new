@@ -23,6 +23,8 @@ class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
     add_column :care_users, :pat, :boolean
     # アレルギー
     add_column :care_users, :allergy, :string
+    # アレルギー内容
+    add_column :care_users, :allergy_text, :string
     # 発作
     add_column :care_users, :seizures, :boolean
     # 服薬
