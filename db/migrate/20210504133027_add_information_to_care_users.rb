@@ -18,15 +18,15 @@ class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
     # 着替え
     add_column :care_users, :cange_clothes, :string
     # おむつ
-    add_column :care_users, :diapers, :boolean
-    # パット
-    add_column :care_users, :pat, :boolean
+    add_column :care_users, :diapers, :string
     # アレルギー
     add_column :care_users, :allergy, :string
     # アレルギー内容
     add_column :care_users, :allergy_text, :string
     # 発作
     add_column :care_users, :seizures, :boolean
+    # 発作内容
+    add_column :care_users, :seizures_text, :string
     # 服薬
     add_column :care_users, :medicine, :boolean
     # 意思疎通（利用者⇨スタッフ）

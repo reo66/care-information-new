@@ -53,26 +53,30 @@
       <%= f.select :evacuation, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["要声がけ","要声がけ"]],{include_blank: "排泄自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :diapers, class: "label-Careuserup" %>
-      <%= f.check_box :diapers, {}, true, false %><br>
-
-      <%= f.label :pat, class: "label-Careuserup" %>
-      <%= f.check_box :pat, {}, true, false %><br>
+      <%= f.select :department, [["なし","なし"],["おむつ","おむつ"],["パット","パット"],["おむつ&パット","おむつ&パット"]],{include_blank: "おむつの有無を選択"},{class: "form-control"} %>
 
       <%= f.label :cange_clothes, class: "label-Careuserup" %>
       <%= f.select :cange_clothes, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"]],{include_blank: "着替え自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :allergy, class: "label-Careuserup" %>
       <%= f.select :allergy, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "ag"} %>
-      <div id="allergy">
+      
+      <div id="form">
         <%= f.label :allergy_text, class: "label-Careuserup" %>
-        <%= f.text_field :allergy_text, class: "form-control" %>
+        <%= f.text_field :allergy_text, class: "form-control",placeholder: "アレルギー内容を記入" %>
       </div>
 
       <%= f.label :medicine, class: "label-Careuserup" %>
       <%= f.check_box :medicine, {}, true, false %><br>
 
       <%= f.label :seizures, class: "label-Careuserup" %>
-      <%= f.check_box :seizures, {}, true, false %><br>
+      <%= f.check_box :seizures, {class: "check_box"}, true, false %><br>
+
+      <div class="form">
+        <%= f.label :seizures_text, class: "label-Careuserup" %>
+        <%= f.text_field :seizures_text, class: "form-control",placeholder: "発作内容を記入" %>
+      </div>
+
 
       <%= f.label :communicate_a, class: "label-Careuserup" %>
       <%= f.select :communicate_a, [["良好","良好"],["援助により可","援助により可"],["困難","困難"]],{include_blank: "利用者⇨援助者の意思疎通状態を選択"},{class: "form-control"} %>
@@ -111,21 +115,34 @@
 <script>
 
 	// アレルギーが有なら内容記載のフォームを出す
-  $('#allergy').hide();
+  $('#form').hide();
   
   $(function(){
     $("#ag").change(function(){
         var name = $('#ag').val()
         if(name == '有'){
-            $("#allergy").show();
+            $("#form").show();
         }
         else if(name == '無'){
-            $("#allergy").hide();
+            $("#form").hide();
         }
+        
     });
 });
+
+// 発作が有りなら内容記載のフォームを出す
+$('.form').hide();
   
+$(function(){
+  $(".check_box").change(function(){
 
-	
+  if ( $(this).is(':checked') ){
+  $('.form').show();
+} else {
+$('.form').hide();
+}
+        });
+      });
 
+  
 </script>
