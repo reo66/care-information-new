@@ -61,10 +61,6 @@
         <td><%= @care_user.diapers %></td>
       </tr> 
       <tr>
-        <th>pat</th>
-        <td><%= @care_user.pat %></td>
-      </tr> 
-      <tr>
         <th>cange_clothes</th>
         <td><%= @care_user.cange_clothes %></td>
       </tr> 
@@ -86,6 +82,13 @@
         <th>seizures</th>
         <td><%= @care_user.seizures %></td>
       </tr> 
+      <% if @care_user.seizures_text.present? %>
+        <tr>
+          <th>seizures_text</th>
+          <td><%= @care_user.allergy_text %></td>
+        </tr>
+      <% end %> 
+
       <tr>
         <th>communicate_a</th>
         <td><%= @care_user.communicate_a %></td>

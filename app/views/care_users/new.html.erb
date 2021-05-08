@@ -112,6 +112,8 @@
 </div>
 
 
+
+
 <script>
 
 	// アレルギーが有なら内容記載のフォームを出す
@@ -133,16 +135,16 @@
 // 発作が有りなら内容記載のフォームを出す
 $('.form').hide();
   
-$(function(){
-  $(".check_box").change(function(){
-
-  if ( $(this).is(':checked') ){
-  $('.form').show();
-} else {
-$('.form').hide();
-}
-        });
-      });
+  $(function(){
+    $(".check_box").change(function(){
+      if ( $(this).is(':checked') ){
+        $('.form').show();
+      } 
+      else {
+          $('.form').hide();
+      }
+    });
+  });
 
   
 </script>
