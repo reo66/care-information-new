@@ -24,11 +24,11 @@ class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
     # アレルギー内容
     add_column :care_users, :allergy_text, :string
     # 発作
-    add_column :care_users, :seizures, :boolean
+    add_column :care_users, :seizures, :string
     # 発作内容
     add_column :care_users, :seizures_text, :string
     # 服薬
-    add_column :care_users, :medicine, :boolean
+    add_column :care_users, :medicine, :string
     # 意思疎通（利用者⇨スタッフ）
     add_column :care_users, :communicate_a, :string
     # 意思疎通概要（利用者⇨スタッフ）

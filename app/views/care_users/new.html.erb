@@ -67,10 +67,10 @@
       </div>
 
       <%= f.label :medicine, class: "label-Careuserup" %>
-      <%= f.check_box :medicine, {}, true, false %><br>
+      <%= f.select :medicine, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control"} %>
 
       <%= f.label :seizures, class: "label-Careuserup" %>
-      <%= f.check_box :seizures, {class: "check_box"}, true, false %><br>
+      <%= f.select :seizures, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "se"} %>
 
       <div class="form">
         <%= f.label :seizures_text, class: "label-Careuserup" %>
@@ -128,7 +128,6 @@
         else if(name == '無'){
             $("#form").hide();
         }
-        
     });
 });
 
@@ -136,13 +135,14 @@
 $('.form').hide();
   
   $(function(){
-    $(".check_box").change(function(){
-      if ( $(this).is(':checked') ){
-        $('.form').show();
-      } 
-      else {
-          $('.form').hide();
-      }
+    $("#se").change(function(){
+        var name = $("#se").val()
+        if(name == '有'){        
+          $('.form').show();
+        }
+        else if(name == '無'){
+            $('.form').hide();
+        }
     });
   });
 
