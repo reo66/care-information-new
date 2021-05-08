@@ -21,6 +21,7 @@ class CareUsersController < ApplicationController
   end 
 
   def edit
+    @use_day = ["月", "火", "水","木", "土", "日","祝", "長期休み"]
   end
 
   def update
