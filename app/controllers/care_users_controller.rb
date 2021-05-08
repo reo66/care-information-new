@@ -1,5 +1,8 @@
 class CareUsersController < ApplicationController
 
+  before_action :set_care_user, only: [:show, :edit, :update, :destroy]
+
+
   def new
     @use_day = ["月", "火", "水","木", "土", "日","祝", "長期休み"]
     @care_user = CareUser.new
@@ -17,9 +20,20 @@ class CareUsersController < ApplicationController
     end
   end 
 
+  def edit
+  end
+
+  def update
+    if @user.update_attributes(care_user_params)
+      flash[:success] = "利用者情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit      
+    end
+  end
+
 
   def show
-    @care_user = CareUser.find(params[:id])
   end
 
   def index
@@ -31,5 +45,10 @@ class CareUsersController < ApplicationController
   def care_user_params
     params.require(:care_user).permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, :checkbox,use_day:[])
   end
+
+  def set_care_user
+    @care_user = CareUser.find(params[:id])
+  end
+
 
 end
