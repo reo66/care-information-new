@@ -25,9 +25,9 @@ class CareUsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(care_user_params)
+    if @care_user.update_attributes(care_user_params)
       flash[:success] = "利用者情報を更新しました。"
-      redirect_to @user
+      redirect_to @care_user
     else
       render :edit      
     end
