@@ -53,7 +53,7 @@
       <%= f.select :evacuation, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["要声がけ","要声がけ"]],{include_blank: "排泄自立度を選択"},{class: "form-control"} %>
 
       <%= f.label :diapers, class: "label-Careuserup" %>
-      <%= f.select :department, [["なし","なし"],["おむつ","おむつ"],["パット","パット"],["おむつ&パット","おむつ&パット"]],{include_blank: "おむつの有無を選択"},{class: "form-control"} %>
+      <%= f.select :diapers, [["なし","なし"],["おむつ","おむつ"],["パット","パット"],["おむつ&パット","おむつ&パット"]],{include_blank: "おむつの有無を選択"},{class: "form-control"} %>
 
       <%= f.label :cange_clothes, class: "label-Careuserup" %>
       <%= f.select :cange_clothes, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"]],{include_blank: "着替え自立度を選択"},{class: "form-control"} %>
