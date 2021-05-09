@@ -128,6 +128,20 @@ $('#form').hide();
             $("#form").hide();
         }
   });
+
+  // 発作が有で登録されていたら内容記載のフォームをペジ遷移時に出す
+
+$('.form').hide();
+
+  $('.form').ready(function(){
+        var name = $('#se').val()
+        if(name == '有'){
+      $('.form').show();
+    }
+    else if(name == '無'){
+            $(".form").hide();
+        }
+  });
 	// アレルギーが有なら内容記載のフォームを出す
 
   
