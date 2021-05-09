@@ -25,6 +25,8 @@ class CareUsersController < ApplicationController
   end
 
   def update
+    params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day] .join(",") : false
+
     if @care_user.update_attributes(care_user_params)
       flash[:success] = "利用者情報を更新しました。"
       redirect_to @care_user

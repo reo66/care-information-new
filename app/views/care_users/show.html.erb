@@ -64,30 +64,34 @@
         <th>cange_clothes</th>
         <td><%= @care_user.cange_clothes %></td>
       </tr> 
-      <tr>
-        <th>allergy</th>
-        <td><%= @care_user.allergy %></td>
-      </tr>
-      <% if @care_user.allergy_text.present? %>
+      
         <tr>
-          <th>allergy_text</th>
-          <td><%= @care_user.allergy_text %></td>
+          <th>allergy</th>
+          <td><%= @care_user.allergy %></td>
         </tr>
-      <% end %> 
+      
+        <% if @care_user.allergy == "有" %>        
+          <tr>
+            <th>allergy_text</th>
+            <td><%= @care_user.allergy_text %></td>
+          </tr>
+        <% end %>
+
       <tr>
         <th>medicine</th>
         <td><%= @care_user.medicine %></td>
       </tr> 
+    
+    
       <tr>
         <th>seizures</th>
         <td><%= @care_user.seizures %></td>
       </tr> 
-      <% if @care_user.seizures_text.present? %>
+
         <tr>
           <th>seizures_text</th>
           <td><%= @care_user.allergy_text %></td>
         </tr>
-      <% end %> 
 
       <tr>
         <th>communicate_a</th>
@@ -122,3 +126,18 @@
   <%= link_to  "新利用者作成", new_care_user_path, class: "btn btn-md btn-primary" %>
   <%= link_to  "利用者編集", edit_care_user_path, class: "btn btn-md btn-primary" %>
 </div>
+
+<script>
+// アレルギーが有なら内容記載のフォームを出す
+$('#allergy').hide();
+
+  $('#allergy').ready(function(){
+        var name = $('.allergy').val()
+        if(name == '有'){
+      $('#allergy').show();
+    }
+    else if(name == '無'){
+            $('#allergy').hide();
+        }
+  });
+  </script>
