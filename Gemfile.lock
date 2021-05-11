@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 532eb2fa92ea3af21554d603e5b628809b4059cc
+  revision: 8c0e69ce65f4a35a52de2feba5dec2ec86b272aa
   specs:
     webpacker (6.0.0.beta.7)
       activesupport (>= 5.2)
@@ -57,8 +57,8 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (10.2.4.0)
-      execjs
+    autoprefixer-rails (10.2.5.0)
+      execjs (< 2.8.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.5)
@@ -180,7 +180,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rake (13.0.3)
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
@@ -259,6 +259,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.3)
