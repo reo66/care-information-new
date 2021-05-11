@@ -35,7 +35,7 @@
 
       <%= f.label :use_day, class: "label-care-user-new" %><br>
       <% @use_day.each do |use_day| %>
-        <%= f.check_box :use_day,{ multiple: true,checked: @care_user.use_day.present? ? @care_user.use_day.split(",").include?(use_day) : false }, use_day, nil %>
+        <%= f.check_box :use_day,{ multiple: true,checked: @care_user.use_day.present? ? @care_user.use_day.include?(use_day) : false }, use_day, nil %>
         <span><%= use_day %></span>
       <% end %><br>
 
