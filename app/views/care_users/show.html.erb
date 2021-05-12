@@ -1,16 +1,19 @@
 <% provide(:title, @care_user.name) %>
-
-<div class="img">
-
-<div>
+<h1>利用者情報</h1>
+<div class="img">  
   <% if @care_user.image? %>
     <img src='<%= @care_user.image %>' class="user-icon" alt="ユーザーアイコン">
   <% else %>      
     <%= image_tag src='picture-3651039_1920.png', class: "user-icon", alt: "ユーザーアイコン" %>
-  <% end %>      
-</div>    
-
-
+  <% end %>   
+  <div class="row">
+    <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
+    <%= link_to  "新規作成", new_care_user_path, class: "btn btn-sm btn-primary" %>
+    <%= link_to  "情報編集", edit_care_user_path, class: "btn btn-sm btn-primary" %>
+  </div>  
+</div>  
+<div class="tb">
+  <div class="row">
     <table class="table table-bordered table-condensed user-table">
       <tr>
         <th>department</th>
@@ -68,35 +71,30 @@
         <th>cange_clothes</th>
         <td><%= @care_user.cange_clothes %></td>
       </tr> 
-      
+      <tr>
+        <th>allergy</th>
+        <td><%= @care_user.allergy %></td>
+      </tr>
+      <% if @care_user.allergy == "有" %>        
         <tr>
-          <th>allergy</th>
-          <td><%= @care_user.allergy %></td>
+          <th>allergy_text</th>
+          <td><%= @care_user.allergy_text %></td>
         </tr>
-      
-        <% if @care_user.allergy == "有" %>        
-          <tr>
-            <th>allergy_text</th>
-            <td><%= @care_user.allergy_text %></td>
-          </tr>
-        <% end %>
-
+      <% end %>
       <tr>
         <th>medicine</th>
         <td><%= @care_user.medicine %></td>
       </tr> 
-    
-    
       <tr>
         <th>seizures</th>
         <td><%= @care_user.seizures %></td>
       </tr> 
-
+      <% if @care_user.seizures == "有" %>  
         <tr>
           <th>seizures_text</th>
           <td><%= @care_user.allergy_text %></td>
         </tr>
-
+      <% end %>
       <tr>
         <th>communicate_a</th>
         <td><%= @care_user.communicate_a %></td>
@@ -126,22 +124,20 @@
         <td><%= @care_user.summary%></td>
       </tr> 
     </table>
-  <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>
-  <%= link_to  "新利用者作成", new_care_user_path, class: "btn btn-md btn-primary" %>
-  <%= link_to  "利用者編集", edit_care_user_path, class: "btn btn-md btn-primary" %>
-</div>
+  </div>  
+</div> 
 
 <script>
 // アレルギーが有なら内容記載のフォームを出す
-$('#allergy').hide();
+  $('#allergy').hide();
 
   $('#allergy').ready(function(){
-        var name = $('.allergy').val()
-        if(name == '有'){
-      $('#allergy').show();
+      var name = $('.allergy').val()
+      if(name == '有'){
+  $('#allergy').show();
     }
     else if(name == '無'){
-            $('#allergy').hide();
-        }
+  $('#allergy').hide();
+    }
   });
-  </script>
+</script>
