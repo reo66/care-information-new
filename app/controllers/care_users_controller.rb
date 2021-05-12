@@ -35,6 +35,7 @@ class CareUsersController < ApplicationController
 
 
   def show
+  
   end
 
   def index

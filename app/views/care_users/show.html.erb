@@ -3,7 +3,11 @@
 <div class="img">
 
 <div>
-    <p><%= image_tag @care_user.image.url, class: "user-icon" if @care_user.image %></p>
+  <% if @care_user.image? %>
+    <img src='<%= @care_user.image %>' class="user-icon" alt="ユーザーアイコン">
+  <% else %>      
+    <%= image_tag src='picture-3651039_1920.png', class: "user-icon", alt: "ユーザーアイコン" %>
+  <% end %>      
 </div>    
 
 
