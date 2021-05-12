@@ -42,6 +42,12 @@ class CareUsersController < ApplicationController
     @care_users = CareUser.all
   end
 
+  def destroy
+    @care_user.destroy
+    flash[:success] = "#{@care_user.name}のデータを削除しました。"
+    redirect_to care_users_url
+  end
+
   private
 
   def care_user_params
