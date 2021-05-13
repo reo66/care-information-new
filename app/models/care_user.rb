@@ -1,5 +1,6 @@
 class CareUser < ApplicationRecord
   mount_uploader :image, ImageUploader
+  include JpPrefecture
   
   enum gender: {boy: 0, girl: 1}
 
@@ -10,6 +11,5 @@ class CareUser < ApplicationRecord
   before_save do
     self.use_day.gsub!(/[\[\]\"]/, "") if attribute_present?("use_day")
   end
-
-
 end
+

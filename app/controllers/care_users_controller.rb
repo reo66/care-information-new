@@ -1,6 +1,8 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_q, only: [:index, :search]
+
 
 
   def new
@@ -10,6 +12,7 @@ class CareUsersController < ApplicationController
 
   def create
     @care_user = CareUser.new(care_user_params)
+  
     # ↓参考：https://qiita.com/xusaku_/items/570b0be745901d2e9a63
     params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day].join(",") : false
     if @care_user.save
@@ -25,6 +28,7 @@ class CareUsersController < ApplicationController
   end
 
   def update
+
     if @care_user.update_attributes(care_user_params)
       flash[:success] = "利用者情報を更新しました。"
       redirect_to @care_user
@@ -40,6 +44,12 @@ class CareUsersController < ApplicationController
 
   def index
     @care_users = CareUser.all
+  
+  end
+
+
+  def search
+    @results = @q.result
   end
 
   def destroy
@@ -47,6 +57,8 @@ class CareUsersController < ApplicationController
     flash[:success] = "#{@care_user.name}のデータを削除しました。"
     redirect_to care_users_url
   end
+
+  
 
   private
 
@@ -56,6 +68,10 @@ class CareUsersController < ApplicationController
 
   def set_care_user
     @care_user = CareUser.find(params[:id])
+  end
+
+  def set_q
+    @q = CareUser.ransack(params[:q])
   end
 
 

@@ -1,8 +1,21 @@
 <% provide(:title, 'All Users') %>
 <h1>利用者一覧</h1>
 
+
+<div class="search">
+<h4>ユーザー検索</h4>
+<%= search_form_for @q, url: search_care_users_path do |f| %>
+  <%= f.label :name_cont, 'ユーザー名' %>
+  <%= f.search_field :name_cont %>
+  <br>
+  <%= f.submit '検索' %>
+<% end %>
+</div>
+
+
+
 <div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-hover" id="table-users">
+  <table class="table table-sm table-hover" id="table-care_users">
     <thead>
       <tr>
         <th><%= User.human_attribute_name :name %></th>
@@ -23,10 +36,12 @@
         <td><%= care_user.department %></td>
         <td>
           <% if current_user.admin?%>
-            <%= link_to "削除", care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-danger" %>
+            <%= link_to  "編集", edit_care_user_path(care_user), class: "btn btn-sm btn-primary" %>
+            <%= link_to "削除", care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </table>
 </div>
+

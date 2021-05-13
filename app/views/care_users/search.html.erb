@@ -1,0 +1,29 @@
+<h1>検索結果</h1>
+
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-sm table-hover" id="table-care_users">
+    <thead>
+      <tr>
+        <th><%= User.human_attribute_name :name %></th>
+        <th><%= User.human_attribute_name :department %></th>
+      </tr>
+    </thead>
+
+    <% @results.each do |care_user| %>
+    <tbody>
+      <tr>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to care_user.name, care_user %>
+          <% else %>
+            <%= care_user.name %>
+          <% end%>
+        </td>
+        <td><%= care_user.department %></td>
+      </tr>
+    <% end %>
+        <tbody>
+  </table>
+
+
+<p><%= link_to "一覧",care_users_path, class: "btn btn-primary " %></p>
