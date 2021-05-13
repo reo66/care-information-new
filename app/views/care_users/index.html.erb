@@ -1,23 +1,16 @@
 <% provide(:title, 'All Users') %>
 <h1>利用者一覧</h1>
 
-
 <div class="search">
-<h4>ユーザー検索</h4>
-<%= search_form_for @q, url: search_care_users_path do |f| %>
-  <%= f.label :name_cont, 'ユーザー名' %>
-  <%= f.search_field :name_cont %>
-  <br>
-  <%= f.submit '検索' %>
-<% end %>
-</div>
-
-
   <%= search_form_for @q, url: search_care_users_path do |f| %>
-    <%= f.radio_button :department_cont, '本店' %>本店
-    <%= f.radio_button :department_cont, '上高畑' %>上高畑
-    <%= f.submit '検索' %>
-  <% end %>
+    <%= f.search_field :name_or_department_cont, class: "form-control",placeholder: "利用者名" %><br>
+    <div class="search1">
+      <%= f.radio_button :department_cont, '本店' %>本店
+      <%= f.radio_button :department_cont, '上高畑' %>上高畑
+<%= f.submit '検索', class: 'btnbtn-primary' %>
+         </div>
+    <% end %>
+</div>
 
 
 
