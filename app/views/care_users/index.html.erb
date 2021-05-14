@@ -7,14 +7,10 @@
     <div class="search1">
       <%= f.radio_button :department_cont, '本店' %>本店
       <%= f.radio_button :department_cont, '上高畑' %>上高畑
-<%= f.submit '検索', class: 'btnbtn-primary' %>
-         </div>
-    <% end %>
+      <%= f.submit '検索', class: 'btnbtn-primary' %>
+    </div>
+  <% end %>
 </div>
-
-
-
-
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
@@ -23,7 +19,6 @@
         <th><%= User.human_attribute_name :department %></th>
       </tr>
     </thead>
-
     <% @care_users.each do |care_user| %>
       <tr>
         <td>
@@ -43,5 +38,6 @@
       </tr>
     <% end %>
   </table>
+  <%= paginate (@care_users) %>
 </div>
 

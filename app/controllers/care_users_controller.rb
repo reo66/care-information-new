@@ -43,9 +43,9 @@ class CareUsersController < ApplicationController
   end
 
   def index
-    @care_users = CareUser.all
-  
+    @care_users = CareUser.page(params[:page]).per(5)
   end
+  
 
 
   def search
