@@ -21,18 +21,15 @@
     </thead>
     <% @care_users.each do |care_user| %>
       <tr>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to care_user.name, care_user %>
-          <% else %>
-            <%= care_user.name %>
-          <% end%>
-        </td>
+        <td><img src='<%= care_user.image %>'class="index_icon"></td>
+        <td><%= link_to care_user.name, care_user %></td>
         <td><%= care_user.department %></td>
         <td>
           <% if current_user.admin?%>
-            <%= link_to  "編集", edit_care_user_path(care_user), class: "btn btn-sm btn-primary" %>
-            <%= link_to "削除", care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
+            <div class="index_btn">
+              <%= link_to  "編集", edit_care_user_path(care_user), class: "btn btn-sm btn-primary" %>
+              <%= link_to "削除", care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
+            </div>
           <% end %>
         </td>
       </tr>
