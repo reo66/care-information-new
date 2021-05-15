@@ -4,14 +4,20 @@
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
       <tr>
-        <th><%= User.human_attribute_name :name %></th>
-        <th><%= User.human_attribute_name :department %></th>
-      </tr>
+<th>image</th>
+        <th>name</th>
+        <th>department</th>
     </thead>
 
     <% @results.each do |care_user| %>
     <tbody>
       <tr>
+      <td>
+      <% if care_user.image.present? %>
+      <img src='<%= care_user.image %>'class="index_icon"></td>
+      <% else %>
+      <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
+      <% end %>
         <td>
           <% if current_user.admin? %>
             <%= link_to care_user.name, care_user %>
