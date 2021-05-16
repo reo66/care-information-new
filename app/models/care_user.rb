@@ -11,5 +11,7 @@ class CareUser < ApplicationRecord
   before_save do
     self.use_day.gsub!(/[\[\]\"]/, "") if attribute_present?("use_day")
   end
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :department, presence: true
 end
 

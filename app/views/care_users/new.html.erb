@@ -9,95 +9,94 @@
       <%= f.label :image, class: "label-care-user-new" %>
       <%= f.file_field :image %>
 
-      <%= f.label :department, class: "label-care-user-new" %>
-      <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択"},{class: "form-control"} %>
+      <span class="label label-danger">必須</span> <%= f.label :department, class: "label-care-user-new", id: "label" %>
+      <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択"},{class: "form-control", required: true } %>
 
-      <%= f.label :name, class: "label-care-user-new" %>
-      <%= f.text_field :name, class: "form-control" %>
+      <span class="label label-danger">必須</span> <%= f.label :name, class: "label-care-user-new", id: "label" %>
+      <%= f.text_field :name, class: "form-control" , required: true %>
 
-      <%= f.label :age, class: "label-care-user-new" %>
+      <%= f.label :age, class: "label-care-user-new", id: "label" %>
       <%= f.number_field :age, class: "form-control", min: 0, max: 18 %>
 
-      <%= f.label :gender, class: "label-care-user-new" %><br>
-      <p>
+      <%= f.label :gender, class: "label-care-user-new", id: "label" %><br>
       <%= f.radio_button :gender, "boy" %> boy
       <%= f.radio_button :gender, "girl" %> girl
-      </p>
+      <br>
 
-      <%= f.label :school, class: "label-care-user-new" %>
+      <%= f.label :school, class: "label-care-user-new" , id: "label"%>
       <%= f.text_field :school, class: "form-control" %>
 
-      <%= f.label :grade, class: "label-care-user-new" %>
+      <%= f.label :grade, class: "label-care-user-new", id: "label" %>
       <%= f.select :grade, [["未就学","未就学"],["年少","年少"],["年中","年中"],["年長","年長"],["小1","小1"],["小2","小2"],["小3","小3"],["小4","小4"],["小5","小5"],["小6","小6"],["中１","中１"],["中2","中2"],["中3","中3"],["高１","高１"],["高2","高2"],["高3","高3"]],{include_blank: "学年を選択"},{class: "form-control"} %>
 
-      <%= f.label :contract, class: "label-care-user-new" %>
+      <%= f.label :contract, class: "label-care-user-new" , id: "label"%>
       <%= f.number_field :contract, class: "form-control", min: 1, max: 31 %>
 
-      <%= f.label :use_day, class: "label-care-user-new" %><br>
+      <%= f.label :use_day, class: "label-care-user-new", id: "label" %><br>
       <% @use_day.each do |use_day| %>
         <%= f.check_box :use_day,{ multiple: true,checked: @care_user.use_day.present? ? @care_user.use_day.include?(use_day) : false }, use_day, nil %>
         <span><%= use_day %></span>
       <% end %><br>
 
-      <%= f.label :house, class: "label-care-user-new" %>
+      <%= f.label :house, class: "label-care-user-new", id: "label" %>
       <%= f.text_field :house, class: "form-control",placeholder: "ex：nakagawa" %>
 
-      <%= f.label :disabled, class: "label-care-user-new" %>
+      <%= f.label :disabled, class: "label-care-user-new" , id: "label"%>
       <%= f.text_field :disabled, class: "form-control",placeholder: "ex：autism" %>
 
     
 
-      <%= f.label :eat, class: "label-care-user-new" %>
+      <%= f.label :eat, class: "label-care-user-new" , id: "label"%>
       <%= f.select :eat, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["食べこぼし注意","食べこぼし注意"]],{include_blank: "食事自立度を選択"},{class: "form-control"} %>
 
-      <%= f.label :evacuation, class: "label-care-user-new" %>
+      <%= f.label :evacuation, class: "label-care-user-new" , id: "label"%>
       <%= f.select :evacuation, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"],["要声がけ","要声がけ"]],{include_blank: "排泄自立度を選択"},{class: "form-control"} %>
 
-      <%= f.label :diapers, class: "label-care-user-new" %>
+      <%= f.label :diapers, class: "label-care-user-new" , id: "label"%>
       <%= f.select :diapers, [["なし","なし"],["おむつ","おむつ"],["パット","パット"],["おむつ&パット","おむつ&パット"]],{include_blank: "おむつの有無を選択"},{class: "form-control"} %>
 
-      <%= f.label :cange_clothes, class: "label-care-user-new" %>
+      <%= f.label :cange_clothes, class: "label-care-user-new" , id: "label"%>
       <%= f.select :cange_clothes, [["自立","自立"],["要介助","要介助"],["一部介助","一部介助"]],{include_blank: "着替え自立度を選択"},{class: "form-control"} %>
 
-      <%= f.label :allergy, class: "label-care-user-edit" %>
+      <%= f.label :allergy, class: "label-care-user-edit", id: "label" %>
       <%= f.select :allergy, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "ag"} %>
       
       <div id="form">
-        <%= f.label :allergy_text, class: "label-care-user-new" %>
+        <%= f.label :allergy_text, class: "label-care-user-new", id: "label"%>
         <%= f.text_field :allergy_text, class: "form-control",placeholder: "アレルギー内容を記入" %>
       </div>
 
-      <%= f.label :medicine, class: "label-care-user-new" %>
+      <%= f.label :medicine, class: "label-care-user-new" , id: "label"%>
       <%= f.select :medicine, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control"} %>
 
-      <%= f.label :seizures, class: "label-care-user-new" %>
+      <%= f.label :seizures, class: "label-care-user-new", id: "label" %>
       <%= f.select :seizures, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "se"} %>
 
       <div class="form">
-        <%= f.label :seizures_text, class: "label-care-user-new" %>
+        <%= f.label :seizures_text, class: "label-care-user-new" , id: "label"%>
         <%= f.text_field :seizures_text, class: "form-control",placeholder: "発作内容を記入" %>
       </div>
 
 
-      <%= f.label :communicate_a, class: "label-care-user-new" %>
+      <%= f.label :communicate_a, class: "label-care-user-new", id: "label" %>
       <%= f.select :communicate_a, [["良好","良好"],["援助により可","援助により可"],["困難","困難"]],{include_blank: "利用者⇨援助者の意思疎通状態を選択"},{class: "form-control"} %>
 
-      <%= f.label :communicate_summary_a, class: "label-care-user-new" %>
+      <%= f.label :communicate_summary_a, class: "label-care-user-new", id: "label" %>
       <%= f.text_field :communicate_summary_a, class: "form-control",placeholder: "上記の概要があれば記入" %>
 
-      <%= f.label :communicate_b, class: "label-care-user-new" %>
+      <%= f.label :communicate_b, class: "label-care-user-new" , id: "label"%>
       <%= f.select :communicate_b, [["良好","良好"],["援助により可","援助により可"],["困難","困難"]],{include_blank: "援助者⇨利用者の意思疎通状態を選択"},{class: "form-control"} %>
 
-      <%= f.label :communicate_summary_b, class: "label-care-user-new" %>
+      <%= f.label :communicate_summary_b, class: "label-care-user-new", id: "label" %>
       <%= f.text_field :communicate_summary_b, class: "form-control",placeholder: "上記の概要があれば記入" %>
 
-      <%= f.label :indoor, class: "label-care-user-new" %>
+      <%= f.label :indoor, class: "label-care-user-new" , id: "label"%>
       <%= f.text_area :indoor, class: "form-control",placeholder: "室内の様子を記入" %>
 
-      <%= f.label :outdoor, class: "label-care-user-new" %>
+      <%= f.label :outdoor, class: "label-care-user-new", id: "label" %>
       <%= f.text_area :outdoor, class: "form-control",placeholder: "戸外の様子を記入" %>
 
-      <%= f.label :summary, class: "label-care-user-new" %>
+      <%= f.label :summary, class: "label-care-user-new", id: "label" %>
       <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>  
 
 

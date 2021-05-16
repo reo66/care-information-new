@@ -7,11 +7,17 @@
     <%= image_tag src='picture-3651039_1920.png', class: "user-icon", alt: "ユーザーアイコン" %>
   <% end %>   
   <div class="row">
-    <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
     <% if current_user.admin?%>
+      <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
       <%= link_to  "新規作成", new_care_user_path, class: "btn btn-sm btn-primary" %>
       <%= link_to  "編集", edit_care_user_path, class: "btn btn-sm btn-primary" %>
       <%= link_to "削除", @care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
+    <% else %>
+    <div class="current_no_admin">
+      <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
+    </div>  
+
+
     <% end %>
   </div>  
 </div>  

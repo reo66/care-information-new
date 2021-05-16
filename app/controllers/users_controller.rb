@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :set_q, only: [:index, :search]
+  # before_action :correct_user, only: [:edit, :update]
+  
 
 
   def new
@@ -35,8 +36,12 @@ class UsersController < ApplicationController
   def show
   end
 
-  def index
-    @users = User.all
+  def index 
+    @users = User.page(params[:page]).per(5)
+  end
+
+  def search
+    @results = @q.result
   end
 
   def destroy
@@ -57,6 +62,10 @@ class UsersController < ApplicationController
   # paramsハッシュからユーザーを取得します。
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_q
+    @q = User.ransack(params[:q])
   end
 
   # ログイン済みのユーザーか確認します。

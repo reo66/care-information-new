@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
 
   create_table "care_users", force: :cascade do |t|
     t.string "image"
-    t.string "department"
-    t.string "name"
+    t.string "department", null: false
+    t.string "name", null: false
     t.integer "age"
     t.integer "gender"
     t.string "school"
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.string "department"
+    t.string "password_digest", null: false
+    t.string "department", null: false
     t.string "remember_digest"
     t.boolean "admin"
   end

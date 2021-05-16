@@ -15,5 +15,7 @@
     </tr> 
   </table>
   <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>
-  <%= link_to  "新利用者作成", new_care_user_path, class: "btn btn-md btn-primary" %>
+  <% if current_user.admin?%>
+    <%= link_to  "新利用者作成", new_care_user_path, class: "btn btn-md btn-primary" %>
+  <% end %>  
 </div>

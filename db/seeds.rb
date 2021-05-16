@@ -7,6 +7,14 @@ User.create!(name: "加藤玲央",
   admin:true
   )
 
+  5.times do |n|
+    User.create!(name: "松田侑季",
+      department: "本店",
+      password: "password",
+      password_confirmation: "password",)
+    end
+    
+
 5.times do |n|
 name  = Faker::Name.name
 CareUser.create!(name: name,
