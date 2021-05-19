@@ -2,15 +2,15 @@
 <div>
   <table class="table table-bordered table-condensed user-table">
     <tr>
-      <th>name</th>
+      <th><%= User.human_attribute_name(:name) %></th>
       <td><%= @user.name %></td>
     </tr>
     <tr>
-      <th>department</th>
-      <td><%= @user.department  %></td>
+      <th><%= User.human_attribute_name(:department) %></th>
+      <td><%= CareUser.human_attribute_name(:department) %></td>
     </tr>  
     <tr>
-      <th>unconfirmed</th>
+      <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
       <td></td>
     </tr> 
   </table>

@@ -10,7 +10,7 @@
   <span class="label label-danger">必須</span> <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control", required: true,placeholder: "6桁以上" %>
 
- <span class="label label-danger">必須</span>  <%= f.label :password_confirmation, "Confirmation", class: "label-#{yield(:class_text)}" %>
+ <span class="label label-danger">必須</span>  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password_confirmation, class: "form-control" , required: true%>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>

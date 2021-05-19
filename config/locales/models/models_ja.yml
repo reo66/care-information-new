@@ -1,0 +1,46 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      care_user: 利用者
+    attributes:
+      user:
+        name: 名前
+        created_at: 所属
+        updated_at: 名前
+        password: パスワード
+        password_confirmation: パスワード再入力
+        department: 所属
+      care_user:
+        image: アイコン
+        department: 所属
+        name: 名前
+        age: 年齢
+        gender: 性別
+        school: 学校（園）
+        created_at: 登録日時
+        updated_at: 更新日時
+        grade: 学年（クラス）
+        contract: 契約日数
+        use_day: 主な利用曜日
+        house: 住まい
+        disabled: 障害
+        eat: 食事
+        evacuation: 排泄
+        cange_clothes: 着替え
+        diapers: おむつ
+        allergy: アレルギー
+        allergy_text: アレルギー詳細
+        seizures: 発作
+        seizures_text: 発作詳細
+        medicine: 服薬
+        communicate_a: 意思疎通（利用者⇨スタッフ）
+        communicate_summary_a: 意思疎通概要（利用者⇨スタッフ）
+        communicate_b: 意思疎通（スタッフ⇨利用者）
+        communicate_summary_b: 意思疎通概要（スタッフ⇨利用者）
+        indoor: 室内の様子
+        outdoor: 戸外の様子
+        summary: その他概要
+        cuser_confirm: 確認サイン
+
+        
