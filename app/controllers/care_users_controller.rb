@@ -2,7 +2,7 @@ class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit, :update, :destroy]
   before_action :set_q, only: [:index, :search]
-
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
 
   def new

@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
   # #以下は検索したものを表示する時に使う記述(一番シンプルで基本の形です)
   # @results = @c.result
   #   end
+
+  def admin_user
+    unless current_user.admin?
+      flash[:danger] = "ページ遷移の権限がありません"
+    redirect_to current_user
+    end
+  end
+  
 end
