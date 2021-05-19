@@ -25,111 +25,111 @@
   <div class="row">
     <table class="table table-bordered table-condensed user-table">
       <tr>
-        <th>department</th>
+        <th><%= CareUser.human_attribute_name(:department) %></th>
         <td><%= @care_user.department %></td>
       </tr> 
       <tr>
-        <th>name</th>
+        <th><%= CareUser.human_attribute_name(:name) %></th>
         <td><%= @care_user.name %></td>
       </tr>
       <tr>
-        <th>age</th>
+        <th><%= CareUser.human_attribute_name(:age) %></th>
         <td><%= @care_user.age %></td>
       </tr>  
       <tr>
-        <th>gender</th>
+        <th><%= CareUser.human_attribute_name(:gender) %></th>
         <td><%= @care_user.gender %></td>
       </tr> 
       <tr>
-        <th>scool</th>
+        <th><%= CareUser.human_attribute_name(:school) %></th>
         <td><%= @care_user.school %></td>
       </tr> 
       <tr>
-        <th>grade</th>
+        <th><%= CareUser.human_attribute_name(:grade) %></th>
         <td><%= @care_user.grade %></td>
       </tr> 
       <tr>
-        <th>contract</th>
+        <th><%= CareUser.human_attribute_name(:contract) %></th>
         <td><%= @care_user.contract %></td>
       </tr> 
       <tr>
-        <th>use_day</th>
+        <th><%= CareUser.human_attribute_name(:use_day) %></th>
         <td><%= @care_user.use_day %></td>
       </tr> 
       <tr>
-        <th>house</th>
+        <th><%= CareUser.human_attribute_name(:house) %></th>
         <td><%= @care_user.house %></td>
       </tr> 
       <tr>
-        <th>disabled</th>
+        <th><%= CareUser.human_attribute_name(:disabled) %></th>
         <td><%= @care_user.disabled %></td>
       </tr> 
       <tr>
-        <th>eat</th>
+        <th><%= CareUser.human_attribute_name(:eat) %></th>
         <td><%= @care_user.eat %></td>
       </tr> 
       <tr>
-        <th>evacuation</th>
+        <th><%= CareUser.human_attribute_name(:evacuation) %></th>
         <td><%= @care_user.evacuation %></td>
       </tr> 
       <tr>
-        <th>diapers</th>
+        <th><%= CareUser.human_attribute_name(:diapers) %></th>
         <td><%= @care_user.diapers %></td>
       </tr> 
       <tr>
-        <th>cange_clothes</th>
+        <th><%= CareUser.human_attribute_name(:cange_clothes) %></th>
         <td><%= @care_user.cange_clothes %></td>
       </tr> 
       <tr>
-        <th>allergy</th>
+        <th><%= CareUser.human_attribute_name(:allergy) %></th>
         <td><%= @care_user.allergy %></td>
       </tr>
       <% if @care_user.allergy == "有" %>        
         <tr>
-          <th>allergy_text</th>
+          <th><%= CareUser.human_attribute_name(:allergy_text) %></th>
           <td><%= @care_user.allergy_text %></td>
         </tr>
       <% end %>
       <tr>
-        <th>medicine</th>
+        <th><%= CareUser.human_attribute_name(:medicine ) %></th>
         <td><%= @care_user.medicine %></td>
       </tr> 
       <tr>
-        <th>seizures</th>
+        <th><%= CareUser.human_attribute_name(:seizures) %></th>
         <td><%= @care_user.seizures %></td>
       </tr> 
       <% if @care_user.seizures == "有" %>  
         <tr>
-          <th>seizures_text</th>
-          <td><%= @care_user.allergy_text %></td>
+          <th><%= CareUser.human_attribute_name(:seizures_text) %></th>
+          <td><%= @care_user.seizures_text %></td>
         </tr>
       <% end %>
       <tr>
-        <th>communicate_a</th>
+        <th><%= CareUser.human_attribute_name(:communicate_a) %></th>
         <td><%= @care_user.communicate_a %></td>
       </tr> 
       <tr>
-        <th>communicate_summary_a</th>
+        <th><%= CareUser.human_attribute_name(:communicate_summary_a) %></th>
         <td><%= @care_user.communicate_summary_a %></td>
       </tr> 
       <tr>
-        <th>ommunicate_b</th>
+        <th><%= CareUser.human_attribute_name(:communicate_b) %></th>
         <td><%= @care_user.communicate_b %></td>
       </tr> 
       <tr>
-        <th>communicate_summary_b</th>
+        <th><%= CareUser.human_attribute_name(:communicate_summary_b) %></th>
         <td><%= @care_user.communicate_summary_b %></td>
       </tr> 
       <tr>
-        <th>indoor</th>
+        <th><%= CareUser.human_attribute_name(:indoor) %></th>
         <td><%= @care_user.indoor %></td>
       </tr> 
       <tr>
-        <th>outdoor</th>
+        <th><%= CareUser.human_attribute_name(:outdoor) %></th>
         <td><%= @care_user.outdoor %></td>
       </tr> 
       <tr>
-        <th>summary</th>
+        <th><%= CareUser.human_attribute_name(:summary) %></th>
         <td><%= @care_user.summary%></td>
       </tr> 
     </table>
