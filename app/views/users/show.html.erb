@@ -11,7 +11,9 @@
     </tr>  
     <tr>
       <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
-      <td></td>
+      <td>
+        <div class="red">未確認の利用者が件います</div>
+      </td>
     </tr> 
   </table>
   <%= link_to "利用者一覧", care_users_path, class: "btn btn-md btn-primary" %>

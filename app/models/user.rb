@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+  has_many :careusers, through: :Intermediates
+  has_many :Intermediates
+
+
   # 「remember_token」という仮想の属性を作成します。
   attr_accessor :remember_token
 
