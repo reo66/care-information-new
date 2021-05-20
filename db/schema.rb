@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_133027) do
+ActiveRecord::Schema.define(version: 2021_05_20_222634) do
 
   create_table "care_users", force: :cascade do |t|
     t.string "image"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_05_04_133027) do
     t.text "outdoor"
     t.text "summary"
     t.boolean "cuser_confirm"
+  end
+
+  create_table "intermediates", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "careuser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["careuser_id"], name: "index_intermediates_on_careuser_id"
+    t.index ["user_id"], name: "index_intermediates_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
