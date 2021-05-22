@@ -7,6 +7,7 @@ class CareUser < ApplicationRecord
   include JpPrefecture
   
   enum gender: {boy: 0, girl: 1}
+  enum cuser_confirm: {false: 0, ture: 1}
 
 
 # 利用者編集でupdateした時にストロングでカラムを配列にしているので、[""]となるのを防ぐ

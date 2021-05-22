@@ -26,7 +26,12 @@
         <td><img src='<%= care_user.image %>'class="index_icon"></td>
         <td><%= link_to care_user.name, care_user %></td>
         <td><%= care_user.department %></td>
-        <td><%= check_box_tag :cuser_confirm %></td>
+        <td>
+          <%= form_with(model: @care_user, local: true) do |f| %>
+            <%= f.hidden_field :cuser_confirm, {value: 'ture'} %>
+            <%= f.submit "済", class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </td>
         <td>
           <% if current_user.admin?%>
             <div class="index_btn">

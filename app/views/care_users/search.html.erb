@@ -7,8 +7,9 @@
     <thead>
       <tr>
 <th>image</th>
-        <th>name</th>
-        <th>department</th>
+        <th><%= CareUser.human_attribute_name(:name) %></th>
+        <th><%= CareUser.human_attribute_name(:department) %></th>
+        <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
     </thead>
 
     <% @results.each do |care_user| %>
@@ -28,10 +29,11 @@
           <% end%>
         </td>
         <td><%= care_user.department %></td>
+        <td><%= check_box_tag :cuser_confirm %></td>
       </tr>
     <% end %>
         <tbody>
   </table>
 
 
-<p><%= link_to "一覧",care_users_path, class: "btn btn-primary " %></p>
+<p><%= link_to "一覧に戻る",care_users_path, class: "btn btn-primary " %></p>
