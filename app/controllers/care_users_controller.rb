@@ -1,7 +1,7 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_q, only: [:index, :search]
+  before_action :set_q, only: [:edit_index, :search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
 
@@ -42,8 +42,14 @@ class CareUsersController < ApplicationController
   
   end
 
-  def index
+  def edit_index
     @care_users = CareUser.page(params[:page]).per(5)
+    @user = User.find(params[:id])
+    
+  end
+
+  def update_index
+   
   end
   
 
@@ -63,8 +69,13 @@ class CareUsersController < ApplicationController
   private
 
   def care_user_params
-    params.require(:care_user).permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, use_day:[])
+    params.require(:care_user).permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, :cuser_confirm, use_day:[])
   end
+
+  def confirm_params
+    params.require(:care_user).permit(:cuser_confirm)
+  end
+
 
   def set_care_user
     @care_user = CareUser.find(params[:id])

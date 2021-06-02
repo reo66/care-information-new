@@ -23,12 +23,18 @@
     </thead>
     <% @care_users.each do |care_user| %>
       <tr>
-        <td><img src='<%= care_user.image %>'class="index_icon"></td>
+        <td>
+          <% if care_user.image? %>
+            <img src='<%= care_user.image %>' class="index_icon" alt="ユーザーアイコン">
+          <% else %>      
+            <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
+          <% end %>   
+        </td>
         <td><%= link_to care_user.name, care_user %></td>
         <td><%= care_user.department %></td>
         <td>
-          <%= form_with(model: @care_user, local: true) do |f| %>
-            <%= f.hidden_field :cuser_confirm, {value: 'ture'} %>
+          <%= form_with(model: @user, url: care_users_update_index_user_path, local: true) do |f| %>
+            <%= f.hidden_field :cuser_confirm, {value: 'true'} %>
             <%= f.submit "済", class: "btn btn-sm btn-primary" %>
           <% end %>
         </td>

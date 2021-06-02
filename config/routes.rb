@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   get    '/users/search', to: 'users#search'
 
   
-  resources :users
+  resources :users do
+    member do
+      get 'care_users/edit_index'
+      patch 'care_users/update_index'
+    end
+  end
   resources :care_users do
     collection do
       get 'search'
