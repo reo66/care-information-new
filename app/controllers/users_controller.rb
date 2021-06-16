@@ -35,6 +35,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @care_users = CareUser.all
+    @count = current_user.care_users.size
+    
   end
 
   def index 

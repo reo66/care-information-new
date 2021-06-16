@@ -10,9 +10,13 @@ Rails.application.routes.draw do
 
   get    '/users/search', to: 'users#search'
 
+  post 'care_user/:care_user_id/user/:id', to: 'care_users#addition' , as: :addition
+  
   
   resources :users do
+    resources :intermediates, only: [:create, :destroy]
     member do
+      
       get 'care_users/edit_index'
       patch 'care_users/update_index'
     end

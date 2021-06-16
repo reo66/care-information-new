@@ -1,8 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :careusers, through: :Intermediates
-  has_many :Intermediates
-
+  has_many :intermediates
+  has_many :care_users, through: :intermediates
 
   # 「remember_token」という仮想の属性を作成します。
   attr_accessor :remember_token
@@ -11,6 +10,11 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :department, presence: true
+
+  def care_user
+    CareUser.all
+  end  
+
 
   # 渡された文字列のハッシュ値を返します。
   def User.digest(string)

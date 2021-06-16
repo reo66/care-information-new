@@ -1,13 +1,13 @@
 class CareUser < ApplicationRecord
 
-  has_many :users, through: :Intermediates
-  has_many :Intermediates
-  
+  has_many :intermediates
+  has_many :users, through: :intermediates
+
   mount_uploader :image, ImageUploader
   include JpPrefecture
   
   enum gender: {boy: 0, girl: 1}
-  enum cuser_confirm: {false: 0, ture: 1}
+
 
 
 # 利用者編集でupdateした時にストロングでカラムを配列にしているので、[""]となるのを防ぐ

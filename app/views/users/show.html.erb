@@ -12,7 +12,18 @@
     <tr>
       <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
       <td>
-        <div class="red">未確認の利用者が件います</div>
+      <%
+=begin%>
+ 全ケアユーザーとcurrent_userに紐づくケアユーザーの数が一致⇨全利用者確認ずみ。
+      全ケアユーザー - current_userに紐づくケアユーザーか未確認の利用者数。 
+<%
+=end%>
+        <% if @care_users.size ==  @count %>
+          <%="全利用者確認済み"%>
+        <% else %>
+          <div class="red"><%="未確認の利用者が#{@care_users.size - @count}名います"%></div>
+        <% end %>
+        
       </td>
     </tr> 
   </table>

@@ -15,14 +15,20 @@ User.create!(name: "加藤玲央",
     end
     
 
+  
+
 5.times do |n|
 name  = Faker::Name.name
 CareUser.create!(name: name,
-  department: "本店")
+  department: "本店",
+ 
+  )
 end
 
 5.times do |n|
   name  = Faker::Name.name
   CareUser.create!(name: name,
-    department: "上高畑")
+    department: "上高畑",
+    
+    )
   end

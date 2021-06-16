@@ -24,6 +24,7 @@ class CareUsersController < ApplicationController
   end 
 
   def edit
+
     @use_day = $days_of_the_week
   end
 
@@ -43,13 +44,22 @@ class CareUsersController < ApplicationController
   end
 
   def edit_index
+
     @care_users = CareUser.page(params[:page]).per(5)
-    @user = User.find(params[:id])
+    @care_user = CareUser.find(params[:id])
     
   end
 
   def update_index
-   
+  end
+
+  def addition
+    @user = User.find(params[:user_id])
+    @care_user = CareUser.find(params[:care_user_id])
+    user = User.find(params[:user_id])
+    care_user = CareUser.find(params[:care_user_id])
+    @care_user.users << user
+    @user.care_users << care_user
   end
   
 

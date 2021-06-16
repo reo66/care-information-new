@@ -33,11 +33,12 @@
         <td><%= link_to care_user.name, care_user %></td>
         <td><%= care_user.department %></td>
         <td>
-          <%= form_with(model: @user, url: care_users_update_index_user_path, local: true) do |f| %>
-            <%= f.hidden_field :cuser_confirm, {value: 'true'} %>
-            <%= f.submit "済", class: "btn btn-sm btn-primary" %>
+          <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :care_user_id, care_user.id%>
+            <%= form.submit "確認", class: "btn btn-primary " %>
           <% end %>
-        </td>
+          </td>
         <td>
           <% if current_user.admin?%>
             <div class="index_btn">
