@@ -3,7 +3,7 @@ class IntermediatesController < ApplicationController
 
 
 def create
-  @intermediate = current_user.intermediates.create(care_user_id: params[:care_user_id])
+  @intermediate = current_user.intermediates.create(care_user_id: params[:care_user_id],confirmation: true)
   if @intermediate.save
     redirect_to care_users_edit_index_user_path(current_user)
   end
