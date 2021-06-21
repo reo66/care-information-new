@@ -47,6 +47,7 @@ class CareUsersController < ApplicationController
 
     @care_users = CareUser.page(params[:page]).per(5)
     @care_user = CareUser.find(params[:id])
+    @intermediate = current_user.intermediates.find_by(confirmation: "true")
     
   end
 
