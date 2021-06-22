@@ -42,13 +42,12 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
     t.text "indoor"
     t.text "outdoor"
     t.text "summary"
-    t.boolean "cuser_confirm", default: false, null: false
+    t.boolean "confirm", default: false, null: false
   end
 
   create_table "intermediates", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "care_user_id", null: false
-    t.boolean "confirmation", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["care_user_id"], name: "index_intermediates_on_care_user_id"

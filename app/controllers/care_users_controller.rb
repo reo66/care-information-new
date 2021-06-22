@@ -44,24 +44,23 @@ class CareUsersController < ApplicationController
   end
 
   def edit_index
-
-    @care_users = CareUser.page(params[:page]).per(5)
     @care_user = CareUser.find(params[:id])
-    @intermediate = current_user.intermediates.find_by(confirmation: "true")
+    @care_users = CareUser.page(params[:page]).per(5)
+    
     
   end
 
   def update_index
   end
 
-  def addition
-    @user = User.find(params[:user_id])
-    @care_user = CareUser.find(params[:care_user_id])
-    user = User.find(params[:user_id])
-    care_user = CareUser.find(params[:care_user_id])
-    @care_user.users << user
-    @user.care_users << care_user
-  end
+  # def addition
+  #   @user = User.find(params[:user_id])
+  #   @care_user = CareUser.find(params[:care_user_id])
+  #   user = User.find(params[:user_id])
+  #   care_user = CareUser.find(params[:care_user_id])
+  #   @care_user.users << user
+  #   @user.care_users << care_user
+  # end
   
 
 

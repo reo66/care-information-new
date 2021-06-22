@@ -44,7 +44,7 @@ class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
     # 概要
     add_column :care_users, :summary, :text
     # ユーザー確認
-    add_column :care_users, :cuser_confirm, :boolean, default: false, null: false
+    add_column :care_users, :confirm, :boolean, default: false, null: false
   
   end
 end
