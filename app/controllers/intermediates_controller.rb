@@ -1,7 +1,5 @@
 class IntermediatesController < ApplicationController
-
-
-
+  
 def create
   @intermediate = current_user.intermediates.create(intermediate_parms)
   if @intermediate.save
