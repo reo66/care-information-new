@@ -51,7 +51,11 @@ class CareUsersController < ApplicationController
   end
 
   def update_index
+    @care_user = CareUser.find(params[:id])
+    @care_user.update(confirm: true)
+    redirect_to care_users_edit_index_user_path(current_user)
   end
+
 
   # def addition
   #   @user = User.find(params[:user_id])

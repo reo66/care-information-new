@@ -1,10 +1,13 @@
 class IntermediatesController < ApplicationController
   
 def create
-  @intermediate = current_user.intermediates.create(intermediate_parms)
+  @intermediate = current_user.intermediates.create(intermediate_params)
   if @intermediate.save
+    user = Intermediate.where(user_id: current_user,care_user_id: params[:care_user_id])
+    care_user = CareUser.find_by(id: params[:care_user_id])
+   care_user.update(confirm: true)
     redirect_to care_users_edit_index_user_path(current_user)
-  end
+  end  
 end
 
 def destroy
@@ -17,7 +20,7 @@ end
 
 private
 
-def intermediate_parms
+def intermediate_params
   params.permit(:user_id, :care_user_id, care_user_attributes: [:id, :confirm])
 
 end
