@@ -3,7 +3,7 @@ class IntermediatesController < ApplicationController
 def create
   @intermediate = current_user.intermediates.create(intermediate_params)
   if @intermediate.save
-    redirect_to care_users_edit_index_user_path(current_user)
+    redirect_back(fallback_location: params[:page])
   end  
 end
 
