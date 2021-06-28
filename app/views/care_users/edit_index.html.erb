@@ -31,16 +31,16 @@
           <% end %>   
         </td>
         <td><%= link_to care_user.name, care_user %></td>
-        <td><%= care_user.department %></td>
+        <td><%= @care_user.department %></td>
         <td>
           <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
             <%= hidden_field_tag :user_id, current_user.id %>
             <%= hidden_field_tag :care_user_id, care_user.id%>
-            <% if care_user.confirm === false %>
-              <%= hidden_field_tag :confirm, true %>
-              <%= form.submit "確認", class: "btn btn-primary " %>
-            <% else %>
+            <%= hidden_field_tag :confirmation, true%>
+            <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id) %>
               <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
+            <% else %>
+            <%= form.submit "確認", class: "btn btn-primary " %>
             <% end %>
           <% end %>
           </td>

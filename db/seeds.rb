@@ -1,6 +1,6 @@
 # coding: utf-8
 
-User.create!(name: "加藤玲央",
+User.create!(name: "加藤",
   department: "本店",
   password: "password",
   password_confirmation: "password",
@@ -8,7 +8,7 @@ User.create!(name: "加藤玲央",
   )
 
   5.times do |n|
-    User.create!(name: "松田侑季",
+    User.create!(name: "松田",
       department: "本店",
       password: "password",
       password_confirmation: "password",)
