@@ -29,8 +29,9 @@ class CareUsersController < ApplicationController
   end
 
   def update
-
     if @care_user.update_attributes(care_user_params)
+      @intermediate = Intermediate.where(care_user_id: params[:id])
+      @intermediate.destroy_all
       flash[:success] = "利用者情報を更新しました。"
       redirect_to @care_user
     else

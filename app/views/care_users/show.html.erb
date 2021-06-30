@@ -8,13 +8,13 @@
   <% end %>   
   <div class="row">
     <% if current_user.admin?%>
-      <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
+      <%= link_to "利用者一覧", care_users_edit_index_user_path, class: "btn btn-sm btn-primary" %>
       <%= link_to  "新規作成", new_care_user_path, class: "btn btn-sm btn-primary" %>
       <%= link_to  "編集", edit_care_user_path, class: "btn btn-sm btn-primary" %>
       <%= link_to "削除", @care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
     <% else %>
     <div class="current_no_admin">
-      <%= link_to "利用者一覧", care_users_path, class: "btn btn-sm btn-primary" %>
+      <%= link_to "利用者一覧", care_users_edit_index_user_path, class: "btn btn-sm btn-primary" %>
     </div>  
 
 

@@ -1,7 +1,8 @@
 class CareUser < ApplicationRecord
 
-  has_many :intermediates
+  has_many :intermediates, dependent: :destroy
   has_many :users, through: :intermediates
+  
 
   mount_uploader :image, ImageUploader
   include JpPrefecture
