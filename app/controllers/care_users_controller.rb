@@ -1,6 +1,6 @@
 class CareUsersController < ApplicationController
 
-  before_action :set_care_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_care_user, only: [:show, :edit, :edit_index,:update, :destroy]
   before_action :set_q, only: [:edit_index, :search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
@@ -45,8 +45,10 @@ class CareUsersController < ApplicationController
   end
 
   def edit_index
-    @care_user = CareUser.find(params[:id])
     @care_users = CareUser.page(params[:page]).per(5)
+    @intermediates = Intermediate.find_by(care_user_id: params[:id]) == nil
+
+    
     
     
   end
