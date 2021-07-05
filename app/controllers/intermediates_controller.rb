@@ -1,7 +1,7 @@
 class IntermediatesController < ApplicationController
   
 def create
-  if Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
+  if Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新").present?
     current_user.intermediates.update(intermediate_params)
     redirect_back(fallback_location: params[:page])
   else
