@@ -1,8 +1,12 @@
 class IntermediatesController < ApplicationController
   
 def create
-  @intermediate = current_user.intermediates.create(intermediate_params)
-  if @intermediate.save
+  if Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
+    current_user.intermediates.update(intermediate_params)
+    redirect_back(fallback_location: params[:page])
+  else
+    @intermediate = current_user.intermediates.create(intermediate_params)
+    @intermediate.save
     redirect_back(fallback_location: params[:page])
   end  
 end
@@ -18,7 +22,7 @@ end
 private
 
 def intermediate_params
-  params.permit(:user_id, :care_user_id, :confirmation)
+  params.permit(:user_id, :care_user_id, :confirmation, :indication )
 
 end
 end

@@ -4,6 +4,8 @@ class CreateIntermediates < ActiveRecord::Migration[5.2]
       t.references :user, null: false, index: true, foreign_key: true
       t.references :care_user, null: false, index: true, foreign_key: true
       t.boolean :confirmation, default: false, null: false
+      t.string :indication
+
   
       t.timestamps
 
