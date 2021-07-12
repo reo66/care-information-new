@@ -35,13 +35,12 @@ class CareUsersController < ApplicationController
     else
       render :edit      
     end
-
   end
 
 
   def show
-  
   end
+
 
   def edit_index
     @care_users = CareUser.page(params[:page]).per(5)
@@ -49,6 +48,7 @@ class CareUsersController < ApplicationController
       @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
     end
   end
+
 
   def update_index
     @care_user = CareUser.find(params[:id])
@@ -97,6 +97,4 @@ class CareUsersController < ApplicationController
   def set_q
     @q = CareUser.ransack(params[:q])
   end
-
-
 end

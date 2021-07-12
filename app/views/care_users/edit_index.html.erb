@@ -2,7 +2,7 @@
 <h1>利用者一覧</h1>
 
 <% if @count.present? %>
-<p><%= "更新された利用者が#{@count.count}人います。再度確認をお願いします"%></p>
+  <p><%= "更新された利用者が#{@count.count}人います。再度確認をお願いします"%></p>
 <% end %>
 
 <div class="search">
@@ -42,7 +42,6 @@
             <%= hidden_field_tag :user_id, current_user.id %>
             <%= hidden_field_tag :care_user_id, care_user.id %>
             <%= hidden_field_tag :confirmation, true %>
-            <%= hidden_field_tag :confirmation_push, true %>
             <%= hidden_field_tag :indication, "" %>
             <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true) %>
               <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
@@ -65,4 +64,3 @@
   </table>
   <%= paginate (@care_users) %>
 </div>
-

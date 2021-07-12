@@ -2,7 +2,9 @@ class IntermediatesController < ApplicationController
   
 def create
   if Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新").present?
-    current_user.intermediates.update(intermediate_params)
+    @care = current_user.intermediates.find_by(care_user_id: params[:care_user_id])
+    @care.update(intermediate_params)
+    @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
     redirect_back(fallback_location: params[:page])
   else
     @intermediate = current_user.intermediates.create(intermediate_params)
@@ -18,11 +20,9 @@ def destroy
   end  
 end
 
-
 private
 
-def intermediate_params
-  params.permit(:user_id, :care_user_id, :confirmation, :indication )
-
-end
+  def intermediate_params
+    params.permit(:user_id, :care_user_id, :confirmation, :indication )
+  end
 end
