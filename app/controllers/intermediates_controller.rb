@@ -1,7 +1,7 @@
 class IntermediatesController < ApplicationController
   
 def create
-  if Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新").present?
+  if Intermediate.where(user_id: current_user.id, care_user_id: params[:care_user_id], confirmation: false, indication: "更新").present?
     @care = current_user.intermediates.find_by(care_user_id: params[:care_user_id])
     @care.update(intermediate_params)
     @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
