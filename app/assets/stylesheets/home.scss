@@ -16,13 +16,20 @@
 
 }
 
+img {
+  -webkit-backface-visibility: hidden;
+}
 /* トップページ配置 */
 
 #home{
-  margin: 0 auto;
+ 
   width:100%;
-  padding-top: 60px;
-  background-image:url("picture-3651039_1920.png");
-  background-repeat: repeat;
-  }
+  height:400px;            
+  background-image:url(312.jpeg);
+  background-repeat:  no-repeat;           
+  background-size: cover;
+      
+}
+
+  
 
