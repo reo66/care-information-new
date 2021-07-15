@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
     t.text "indoor"
     t.text "outdoor"
     t.text "summary"
-    t.boolean "confirm", default: false, null: false
   end
 
   create_table "intermediates", force: :cascade do |t|

@@ -6,7 +6,6 @@
         <% if logged_in? %>
           <% if current_user.admin?%>
             <li><%= link_to "スタッフ一覧", users_path %></li>
-          <% else %>
           <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -21,8 +20,9 @@
               </li>
             </ul>
           </li>
-        <% else %>
-          
+          <% else %>
+            <li><%= link_to "ログイン", login_path, class:"logo" %></li>
+            <li><%= link_to  "アカウント作成", signup_path, class:"logo" %></li>
         <% end %>
       </ul>
     </nav>

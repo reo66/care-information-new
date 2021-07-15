@@ -6,11 +6,13 @@ class CareUsersController < ApplicationController
 
 
   def new
-    @use_day = $days_of_the_week
     @care_user = CareUser.new
+    @use_day = $days_of_the_week
+    
   end
 
   def create
+   
     @care_user = CareUser.new(care_user_params)
     # ↓参考：https://qiita.com/xusaku_/items/570b0be745901d2e9a63
     params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day].join(",") : false
@@ -44,7 +46,7 @@ class CareUsersController < ApplicationController
 
   def edit_index
     @care_users = CareUser.page(params[:page]).per(5)
-    if @care_user.update(care_user_params)
+    if @care_user.update(care_user_two_params)
       @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
     end
   end
@@ -82,7 +84,11 @@ class CareUsersController < ApplicationController
   private
 
   def care_user_params
-    params.permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, :cuser_confirm, use_day:[])
+    params.require(:care_user).permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, use_day:[])
+  end
+
+  def care_user_two_params
+    params.permit(:image, :department, :name, :age, :gender, :school, :grade, :contract, :house,:disabled,:eat,:evacuation,:cange_clothes,:diapers, :allergy, :allergy_text,:seizures, :seizures_text, :medicine,:communicate_a,:communicate_summary_a,:communicate_b,:communicate_summary_b,:indoor,:outdoor,:summary, use_day:[])
   end
 
   def confirm_params

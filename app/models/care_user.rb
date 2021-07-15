@@ -1,4 +1,5 @@
 class CareUser < ApplicationRecord
+  require 'date'
 
   has_many :intermediates, dependent: :destroy
   has_many :users, through: :intermediates
