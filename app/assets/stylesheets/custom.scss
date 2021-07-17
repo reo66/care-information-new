@@ -2,9 +2,13 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
 
 body{
-  padding-top: 60px;
+background-color: whitesmoke;
+font-family: 'Ubuntu Mono', monospace;
+
+ 
 }
 
 
@@ -29,19 +33,23 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 h1 {
+  color: grey;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 h2 {
@@ -50,12 +58,14 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  font-family: 'Ubuntu Mono', monospace;
+  
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 /* header */
@@ -63,8 +73,9 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
+  font-size: 2.5em;
+  font-family: 'Ubuntu Mono', monospace;
+  color: #ffb6c1;;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -72,23 +83,66 @@ p {
 }
 
 #logo:hover {
-  color: #fff;
+  color: #ff00ff;
   text-decoration: none;
 }
 
 .logo {
+  padding-top: 9px;
   text-transform: uppercase;
   letter-spacing: -1px;
-  font-size: 1.2em;
-  color:#fff;
-  padding-top: 9px;
+  font-size: 2em;
+  font-family: 'Ubuntu Mono', monospace;
   font-weight: bold;
+  color: #ffb6c1;;
 }
 
+element.style {
+  color: #ff00ff;
+}
+
+
 .logo:hover {
-  color: #fff;
+  color: #ff00ff;
   text-decoration: none;
 }
+
+.dropdown-menu{
+  font-size: 1.3em;
+  border: none;
+  text-transform: uppercase;
+  background: whitesmoke;
+  
+}
+
+ul.dropdown-menu {
+  color:#ffb6c1;
+}
+
+nav ul ul li a:hover{
+  color:#ffb6c1;
+}
+  
+
+nav ul li ul li a:visited{color:#ffb6c1;}
+nav ul li:hover ul li a{color:#ffb6c1;}
+nav ul li:hover ul li a:hover{color:#ff00ff;}
+
+
+
+
+
+
+
+
+
+
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  color: #ffb6c1;
+}
+
+
 
 
 /* debug */
