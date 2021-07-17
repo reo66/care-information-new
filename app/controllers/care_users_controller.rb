@@ -56,16 +56,6 @@ class CareUsersController < ApplicationController
     @care_user = CareUser.find(params[:id])
     redirect_to care_users_edit_index_user_path(current_user)
   end
-
-
-  # def addition
-  #   @user = User.find(params[:user_id])
-  #   @care_user = CareUser.find(params[:care_user_id])
-  #   user = User.find(params[:user_id])
-  #   care_user = CareUser.find(params[:care_user_id])
-  #   @care_user.users << user
-  #   @user.care_users << care_user
-  # end
   
 
 

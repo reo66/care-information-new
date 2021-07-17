@@ -6,34 +6,43 @@
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
       <tr>
-<th>image</th>
+        <th><%= CareUser.human_attribute_name(:image) %></th>
         <th><%= CareUser.human_attribute_name(:name) %></th>
         <th><%= CareUser.human_attribute_name(:department) %></th>
         <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
-    </thead>
 
-    <% @results.each do |care_user| %>
-    <tbody>
-      <tr>
-      <td>
-      <% if care_user.image.present? %>
-      <img src='<%= care_user.image %>'class="index_icon"></td>
-      <% else %>
-      <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
-      <% end %>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to care_user.name, care_user %>
-          <% else %>
-            <%= care_user.name %>
-          <% end%>
-        </td>
-        <td><%= care_user.department %></td>
-        <td><%= check_box_tag :cuser_confirm %></td>
       </tr>
+    </thead>
+    <% @results.each do |care_user| %>
+      <tbody>
+        <tr>
+          <td>  
+          <% if care_user.image.present? %>
+            <img src='<%= care_user.image %>'class="index_icon"></td>
+          <% else %>
+            <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
+          <% end %>
+          <td><%= link_to care_user.name, care_user %></td>
+          <td><%= care_user.department %></td>
+          <td>
+            <div class="index_btn">
+              <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
+                <%= hidden_field_tag :user_id, current_user.id %>
+                <%= hidden_field_tag :care_user_id, care_user.id %>
+                <%= hidden_field_tag :confirmation, true %>
+                <%= hidden_field_tag :indication, "" %>
+                <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true) %>
+                  <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
+                <% else %>
+                  <%= form.submit "確認", class: "btn btn-primary " %>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <tbody>
     <% end %>
-        <tbody>
   </table>
 
 
-<p><%= link_to "一覧に戻る",care_users_path, class: "btn btn-primary " %></p>
+<p><%= link_to "一覧に戻る",care_users_edit_index_user_path(current_user), class: "btn btn-primary " %></p>
