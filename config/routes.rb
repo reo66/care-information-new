@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/signup', to: 'users#new'
 
+  get '/top_overview', to: 'home#top_overview'
+  
+
   # ログイン機能
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'

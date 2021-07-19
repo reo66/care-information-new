@@ -61,6 +61,8 @@ class CareUsersController < ApplicationController
 
   def search
     @results = @q.result
+    @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
+
   end
 
   def destroy
