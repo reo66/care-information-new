@@ -49,7 +49,7 @@ class CareUsersController < ApplicationController
 
   
   def edit_index 
-    @care_users = @q.result(distinct: true).order("name DESC").page(params[:page])
+    @care_users = @q.result.page(params[:page])
     if @care_user.update(care_user_two_params)
       @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
     end
