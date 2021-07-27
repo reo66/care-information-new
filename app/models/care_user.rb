@@ -20,5 +20,9 @@ class CareUser < ApplicationRecord
   end
   validates :name, presence: true, length: { maximum: 50 }
   validates :department, presence: true
+
+  
+  
+
 end
 

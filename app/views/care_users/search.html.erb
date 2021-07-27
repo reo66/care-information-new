@@ -10,9 +10,10 @@
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
       <tr>
-        <th><%= CareUser.human_attribute_name(:image) %></th>
-        <th><%= CareUser.human_attribute_name(:name) %></th>
-        <th><%= CareUser.human_attribute_name(:department) %></th>
+        <th></th>
+        <th><%= sort_link(@q, :name, "name") %></th>
+        <th><%= sort_link(@q, :grade, "学年") %></th>
+        <th><%= sort_link(@q, :department, "所属") %></th>
         <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
 
       </tr>
@@ -27,6 +28,7 @@
             <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
           <% end %>
           <td><%= link_to care_user.name, care_user %></td>
+          <td><%= care_user.grade %></td>
           <td><%= care_user.department %></td>
           <td>
             <div class="index_btn">

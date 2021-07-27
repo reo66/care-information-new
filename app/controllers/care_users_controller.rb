@@ -3,6 +3,9 @@ class CareUsersController < ApplicationController
   before_action :set_care_user, only: [:show, :edit, :edit_index,:update, :destroy]
   before_action :set_q, only: [:edit_index, :search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
+  
+
+
 
 
   def new
@@ -12,7 +15,7 @@ class CareUsersController < ApplicationController
   end
 
   def create
-   
+
     @care_user = CareUser.new(care_user_params)
     # ↓参考：https://qiita.com/xusaku_/items/570b0be745901d2e9a63
     params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day].join(",") : false
@@ -44,8 +47,9 @@ class CareUsersController < ApplicationController
   end
 
 
-  def edit_index
-    @care_users = CareUser.page(params[:page]).per(5)
+  
+  def edit_index 
+    @care_users = @q.result(distinct: true).order("name DESC").page(params[:page])
     if @care_user.update(care_user_two_params)
       @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
     end
@@ -95,4 +99,6 @@ class CareUsersController < ApplicationController
   def set_q
     @q = CareUser.ransack(params[:q])
   end
+
+  
 end
