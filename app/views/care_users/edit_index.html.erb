@@ -7,11 +7,11 @@
 
 <div class="search">
   <%= search_form_for @q, url: search_care_users_path do |f| %>
-    <%= f.search_field :name_or_department_cont, class: "form-control",placeholder: "利用者名" %><br>
+    <%= f.search_field :name_or_department_cont, class: "form-control",placeholder: "name" %><br>
     <div class="search1">
       <%= f.radio_button :department_cont, '本店' %>本店
       <%= f.radio_button :department_cont, '上高畑' %>上高畑
-      <%= f.submit '検索', class: 'btnbtn-primary' %>
+      <%= f.submit 'search', class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>
@@ -20,9 +20,9 @@
     <thead>
       <tr>
         <th></th>
-        <th><%= sort_link(@q, :name, "name", hide_indicator: true) %></th>
-        <th><%= sort_link(@q, :grade, "grade", hide_indicator: true) %></th>
-        <th><%= sort_link(@q, :department, "department", hide_indicator: true) %></th>
+        <th>name</th>
+        <th>grade</th>
+        <th>department</th>
         <th>confirmation</th>
       </tr>
     </thead>

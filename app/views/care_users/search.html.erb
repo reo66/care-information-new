@@ -11,9 +11,9 @@
     <thead>
       <tr>
         <th></th>
-        <th><%= sort_link(@q, :name, "name") %></th>
-        <th><%= sort_link(@q, :grade, "grade") %></th>
-        <th><%= sort_link(@q, :department, "department") %></th>
+        <th>name</th>
+        <th>grade</th>
+        <th>department</th>        
         <th>confirmation</th>
 
       </tr>
@@ -51,4 +51,4 @@
   </table>
 
 
-<p><%= link_to "一覧に戻る",care_users_edit_index_user_path(current_user), class: "btn btn-primary " %></p>
+<p><%= link_to "back",care_users_edit_index_user_path(current_user), class: "btn btn-primary " %></p>
