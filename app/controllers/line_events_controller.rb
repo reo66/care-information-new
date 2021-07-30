@@ -1,0 +1,2 @@
+class LineEventsController < ApplicationController
+end
