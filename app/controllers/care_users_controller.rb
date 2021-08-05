@@ -1,6 +1,6 @@
 class CareUsersController < ApplicationController
 
-  before_action :set_care_user, only: [:show, :edit, :edit_index,:update, :destroy]
+  before_action :set_care_user, only: [:show, :edit,:update, :destroy]
   before_action :set_q, only: [:edit_index, :search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
   
@@ -21,6 +21,7 @@ class CareUsersController < ApplicationController
     params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day].join(",") : false
     if @care_user.save
       flash[:success] = '新規作成に成功しました。'
+
       redirect_to @care_user
     else
       render :new
@@ -36,6 +37,7 @@ class CareUsersController < ApplicationController
       @intermediate = Intermediate.where(care_user_id: params[:id])
       @intermediate.update(confirmation: false,indication: "更新" )
       flash[:success] = "利用者情報を更新しました。"
+      
       redirect_to @care_user
     else
       render :edit      
@@ -50,8 +52,9 @@ class CareUsersController < ApplicationController
   
   def edit_index 
     @care_users = CareUser.page(params[:page]).per(10)
-    if @care_user.update(care_user_two_params)
-      @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
+    if @care_users.update(care_user_two_params)
+      @count =  Intermediate.page(params[:page]).where(user_id: current_user.id, confirmation: false, indication: "更新")
+      CareUser.broad_push()
     end
   end
 
