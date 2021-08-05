@@ -21,7 +21,7 @@ class CareUser < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :department, presence: true
 
-  def self.broad_push
+  def self.broad_push(send_message)
     require 'net/http'
     require 'uri'
     require 'json' 
@@ -38,7 +38,9 @@ class CareUser < ApplicationRecord
         'Content-Type' =>'application/json',
         'Accept'=>'application/json'
     }
-    send_message = "確認しました"
+    
+    
+
     # Body
     params = {"messages" => [{"type" => "text", "text" => send_message}]}
     response = http.post(uri.path, params.to_json, headers)

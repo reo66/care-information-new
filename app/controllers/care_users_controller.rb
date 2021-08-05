@@ -21,7 +21,8 @@ class CareUsersController < ApplicationController
     params[:care_user][:use_day] ? @care_user.use_day = params[:care_user][:use_day].join(",") : false
     if @care_user.save
       flash[:success] = '新規作成に成功しました。'
-
+      send_message = "新規の利用者が登録されました。ご確認をお願い致します"
+      CareUser.broad_push(send_message)
       redirect_to @care_user
     else
       render :new
@@ -37,7 +38,8 @@ class CareUsersController < ApplicationController
       @intermediate = Intermediate.where(care_user_id: params[:id])
       @intermediate.update(confirmation: false,indication: "更新" )
       flash[:success] = "利用者情報を更新しました。"
-      
+      send_message = "#{@care_user.name}の情報が更新されました。ご確認をお願い致します"
+      CareUser.broad_push(send_message)
       redirect_to @care_user
     else
       render :edit      
@@ -54,7 +56,6 @@ class CareUsersController < ApplicationController
     @care_users = CareUser.page(params[:page]).per(10)
     if @care_users.update(care_user_two_params)
       @count =  Intermediate.page(params[:page]).where(user_id: current_user.id, confirmation: false, indication: "更新")
-      CareUser.broad_push()
     end
   end
 
