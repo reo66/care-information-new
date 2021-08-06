@@ -1,16 +1,16 @@
 <% provide(:title, @user.name) %>
 <div>
-  <table class="table table-bordered table-condensed user-table">
+  <table class="table table-bordered table-condensed table-sm user-table">
     <tr>
-      <th><%= User.human_attribute_name(:name) %></th>
-      <td><%= @user.name %></td>
+      <th style="width: 10%"><%= User.human_attribute_name(:name) %></th>
+      <td   ><%= @user.name %></td>
     </tr>
     <tr>
-      <th><%= User.human_attribute_name(:department) %></th>
-      <td><%= CareUser.human_attribute_name(:department) %></td>
+      <th style="width: 10%"><%= User.human_attribute_name(:department) %></th>
+      <td><%= @user.department %></td>
     </tr>  
     <tr>
-      <th><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
+      <th style="width: 10%"><%= CareUser.human_attribute_name(:cuser_confirm) %></th>
       <td>
       <%
 =begin%>
