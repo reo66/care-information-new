@@ -1,7 +1,7 @@
 <% provide(:title, '利用者一覧') %>
 <h1>利用者一覧</h1>
 
-<% if @count.present? && @care_users.current_page  %>
+<% if @results.present? %>
   <p><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします."%></p>
 <% end %>
 

@@ -1,17 +1,25 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
+<div class="user_new">
+  <div class="qr_one">
+    <span class="label label-danger">必須</span> <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
 
-  <span class="label label-danger">必須</span> <%= f.label :name, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :name, class: "form-control", required: true %>
+    <span class="label label-danger">必須</span> <%= f.label :department, class: "label-#{yield(:class_text)}" %>
+    <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択", required: true},{class: "form-control"} %>
 
-  <span class="label label-danger">必須</span> <%= f.label :department, class: "label-#{yield(:class_text)}" %>
-  <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択", required: true},{class: "form-control"} %>
+    <span class="label label-danger">必須</span> <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+    <%= f.password_field :password, class: "form-control", required: true,placeholder: "6桁以上" %>
 
-  <span class="label label-danger">必須</span> <%= f.label :password, class: "label-#{yield(:class_text)}" %>
-  <%= f.password_field :password, class: "form-control", required: true,placeholder: "6桁以上" %>
+    <span class="label label-danger">必須</span>  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+    <%= f.password_field :password_confirmation, class: "form-control" , required: true%>
 
- <span class="label label-danger">必須</span>  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
-  <%= f.password_field :password_confirmation, class: "form-control" , required: true%>
-
-  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+  </div>
+  <div class="qr_two">
+    <img src="https://qr-official.line.me/sid/M/430nzpef.png"><br>
+    <p></p>
+    <P>LINE友達登録でより便利に！！</p>
+  </div>
+</div>
 <% end %>
