@@ -2,10 +2,14 @@
 
 <h1>検索結果</h1>
 
-<% if @results.present? %>
+<%#--if @results.present? --#%>
+<%#--  <p><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします"%>
+<%# </p> %>
+<%#--  <% end --#%>
+
+<% if @count.count > 0 %>
   <p><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします"%></p>
 <% end %>
-
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>

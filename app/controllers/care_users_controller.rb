@@ -52,12 +52,14 @@ class CareUsersController < ApplicationController
 
 
   
-  def edit_index 
-    @results = @q.result.count
+  def edit_index
     @care_users = CareUser.page(params[:page]).per(10)
-    if @care_users.update(care_user_two_params)
-      @count =  Intermediate.page(params[:page]).where(user_id: current_user.id, confirmation: false, indication: "更新")
-    end
+    @count = Intermediate.page(params[:page]).where(user_id: current_user.id, confirmation: false, indication: "更新")
+
+    # if @care_users.update(care_user_two_params)
+    #   @count =  Intermediate.page(params[:page]).where(user_id: current_user.id, confirmation: false, indication: "更新")
+    # end
+
   end
 
 
@@ -70,7 +72,8 @@ class CareUsersController < ApplicationController
 
   def search
     @results = @q.result
-    @count =  Intermediate.where(user_id: current_user.id, confirmation: false, indication: "更新")
+    @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(Intermediates: { user_id: current_user.id,
+    confirmation: false, indication: "更新" })
 
   end
 
