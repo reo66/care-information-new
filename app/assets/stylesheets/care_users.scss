@@ -101,8 +101,15 @@
     display:none
   }
  
-
+.text p {
+  display:inline-block;
+ vertical-align:top;
+ font-size: small; 
   
+}
 
-  
- 
+.sign {
+  font-weight: bold;;
+  display: inline-block;
+  border-bottom: solid 4px lightgrey;
+}

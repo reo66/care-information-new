@@ -1,9 +1,23 @@
 <% provide(:title, '利用者一覧') %>
 <h1>利用者一覧</h1>
 
+ <div class="text">
+ <p>未確認or新規 →</p>
+ <p><button class="btn-primary btn-sm">確認</button></p>
+ </div>
+
+ <div class="text">
+ <p>更新 →</p>
+ <p><button class="btn-success btn-sm">確認</button></p>
+ </div>
+
+
+<h5>
 <% if @count.present? && @care_users.current_page  %>
-  <p><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします."%></p>
+  <p class="sign"><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします."%></p>
 <% end %>
+</h4>
+
 
 <div class="search">
   <%= search_form_for @q, url: search_care_users_path do |f| %>
@@ -47,6 +61,8 @@
             <%= hidden_field_tag :indication, "" %>
             <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true) %>
               <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
+            <% elsif Intermediate.exists?(user_id: current_user,care_user_id: care_user.id, confirmation: false, indication: "更新") %>
+              <%= form.submit "確認", class: "btn btn-success " %>
             <% else %>
               <%= form.submit "確認", class: "btn btn-primary " %>
             <% end %>
