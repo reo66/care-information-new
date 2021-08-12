@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :department, presence: true
 
+  
+
   def care_user
     CareUser.all
   end  

@@ -5,17 +5,15 @@
   <p>
     未確認or新規 →
       <button class="btn-primary btn-sm" disabled>確認</button>
-    　　更新 →
+    　　確認後更新 →
       <button button class="btn-success btn-sm" disabled>確認</button>
   </p>
 </div>
-
-
 <h5>
 <% if @count.present? && @care_users.current_page  %>
-  <p class="sign"><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします."%></p>
+  <p class="sign"><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします。"%></p>
 <% end %>
-</h4>
+</h5>
 
 
 <div class="search">
