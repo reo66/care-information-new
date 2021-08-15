@@ -52,11 +52,11 @@
         <td>
         <div class="index_btn">
           <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
-            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :user_id, current_user %>
             <%= hidden_field_tag :care_user_id, care_user.id %>
             <%= hidden_field_tag :confirmation, true %>
-            <%= hidden_field_tag :indication, "" %>
-            <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true) %>
+            <%= hidden_field_tag :indication, "未更新" %>
+            <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true,indication: "未更新") %>
               <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
             <% elsif Intermediate.exists?(user_id: current_user,care_user_id: care_user.id, confirmation: false, indication: "更新") %>
               <%= form.submit "確認", class: "btn btn-success " %>
