@@ -3,6 +3,8 @@ class CareUser < ApplicationRecord
 
   has_many :intermediates, dependent: :destroy
   has_many :users, through: :intermediates
+
+  accepts_nested_attributes_for :intermediates
   
 
   mount_uploader :image, ImageUploader

@@ -95,6 +95,12 @@
       <%= f.label :summary, class: "label-care-user-new", id: "label" %>
       <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>  
 
+      <%= f.fields_for :intermediates do |i| %>
+        <%= i.hidden_field :user_id, :value => current_user  %>
+        <%= i.hidden_field :care_user_id, :value => @care_user  %>
+        <%= i.hidden_field :indication, :value => "未更新"  %>
+      <% end %>
+
       <%= f.submit "新規登録", class: "btn btn-primary btn-block btn-signup" %>
     <% end %>
   </div>
