@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   # before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index]
   
-
-
   def new
     @user = User.new
   end
@@ -30,17 +28,16 @@ class UsersController < ApplicationController
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to @user
     else
-      render :edit      
+      render :edit
     end
   end
 
   def show
     @care_users = CareUser.all
-    @count = Intermediate.where(user_id: current_user.id, confirmation: true).size
-    
+    @count = Intermediate.where(user_id: current_user.id).size
   end
 
-  def index 
+  def index
     @users = User.page(params[:page]).per(5)
   end
 

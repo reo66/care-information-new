@@ -62,7 +62,7 @@
 
       <%= f.label :allergy, class: "label-care-user-edit", id: "label" %>
       <%= f.select :allergy, [["有","有"],["無","無"]],{include_blank: "有無を選択"},{class: "form-control", id: "ag"} %>
-      
+
       <div id="form">
         <%= f.label :allergy_text, class: "label-care-user-new", id: "label"%>
         <%= f.text_field :allergy_text, class: "form-control",placeholder: "アレルギー内容を記入" %>
@@ -98,13 +98,7 @@
       <%= f.text_area :outdoor, class: "form-control",placeholder: "戸外の様子を記入" %>
 
       <%= f.label :summary, class: "label-care-user-new", id: "label" %>
-      <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>  
-
-      <%= f.fields_for :intermediates do |i| %>
-        <%= i.hidden_field :user_id, :value => current_user  %>
-        <%= i.hidden_field :care_user_id, :value => @care_user  %>
-        <%= i.hidden_field :indication, :value => "未更新"  %>
-      <% end %>
+      <%= f.text_area :summary, class: "form-control",placeholder: "その他概要,注意点などを記入" %>
 
       <%= f.submit "新規登録", class: "btn btn-primary btn-block btn-signup" %>
     <% end %>
@@ -116,8 +110,8 @@
 
 // フリガナ自動入力
 
- 
-        $(function() {               
+
+        $(function() {
             $.fn.autoKana('#name', '#kana', {
                 katakana : true  //true：カタカナ、false：ひらがな（デフォルト）
         });
@@ -125,7 +119,7 @@
 
 	// アレルギーが有なら内容記載のフォームを出す
   $('#form').hide();
-  
+
   $(function(){
     $("#ag").change(function(){
         var name = $('#ag').val()
