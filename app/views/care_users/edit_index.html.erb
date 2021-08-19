@@ -17,7 +17,7 @@
 
 
 <div class="search">
-  <%= search_form_for @q, url: search_care_users_path do |f| %>
+  <%= search_form_for @q, url: care_users_search_path do |f| %>
     <%= f.search_field :name_or_department_cont, class: "form-control",placeholder: "name" %><br>
     <div class="search1">
       <%= f.radio_button :department_cont, '本店' %>本店
@@ -43,26 +43,22 @@
         <td>
           <% if care_user.image? %>
             <img src='<%= care_user.image %>' class="index_icon" alt="ユーザーアイコン">
-          <% else %>      
+          <% else %>
             <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
-          <% end %>   
+          <% end %>
         </td>
-        <td><%= care_user.kana %></td>
         <td><%= link_to care_user.name, care_user %></td>
         <td><%= care_user.grade %></td>
         <td><%= care_user.department %></td>
         <td>
         <div class="index_btn">
-          <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
-            <%= hidden_field_tag :user_id, current_user %>
-            <%= hidden_field_tag :care_user_id, care_user.id %>
-            <%= hidden_field_tag :confirmation, true %>
-            <%= hidden_field_tag :indication, "未更新" %>
-            <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true,indication: "未更新") %>
+          <%= form_with(model: care_user, url: user_intermediates_path(current_user.id, care_user.id), local: true) do |form| %>
+            <%= hidden_field_tag :indication, "確認済" %>
+            <% if intermediate_indication(care_user.id) == "確認済" %>
               <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
-            <% elsif Intermediate.exists?(user_id: current_user,care_user_id: care_user.id, confirmation: false, indication: "更新") %>
+            <% elsif intermediate_indication(care_user.id) == "更新後未確認" %>
               <%= form.submit "確認", class: "btn btn-success " %>
-            <% else %>
+            <% elsif intermediate_indication(care_user.id) == "未確認" %>
               <%= form.submit "確認", class: "btn btn-primary " %>
             <% end %>
           <% end %>
@@ -71,8 +67,8 @@
         <td>
           <% if current_user.admin? %>
             <div class="index_btn">
-              <%= link_to  "編集", edit_care_user_path(care_user), class: "btn btn-sm btn-primary" %>
-              <%= link_to "削除", care_user, method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
+              <%= link_to  "編集", edit_care_user_path(care_user_id: care_user.id), method: :get, class: "btn btn-sm btn-primary" %>
+              <%= link_to "削除", user_care_user_path(current_user.id, care_user.id), method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
             </div>
           <% end %>
         </td>

@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_222634) do
+ActiveRecord::Schema.define(version: 2021_08_18_094630) do
 
   create_table "care_users", force: :cascade do |t|
     t.string "image"
     t.string "department", null: false
     t.string "name", null: false
-    t.string "kana", null: false
     t.integer "age"
     t.integer "gender"
     t.string "school"
@@ -48,8 +47,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
   create_table "intermediates", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "care_user_id", null: false
-    t.boolean "confirmation", default: false, null: false
-    t.string "indication", default: "未更新", null: false
+    t.integer "indication", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["care_user_id"], name: "index_intermediates_on_care_user_id"
@@ -63,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
     t.string "password_digest", null: false
     t.string "department", null: false
     t.string "remember_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin"
   end
 
 end
