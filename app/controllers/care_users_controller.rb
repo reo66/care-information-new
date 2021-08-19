@@ -26,10 +26,18 @@ class CareUsersController < ApplicationController
 
       # Intermediateの登録
       user_ids = User.all.select(:id)
+      # User.all
+      # User.find(1)
+      # User.find_by(name: "test")
+      # User.where(name: "test")
+      # => <User ~ id: 1, name: "test", age: 30 ・・・・>
+      # User.all.select(:id)
+      # =>  <User ~ id: 1>
       user_ids.each do |user|
         intermediate = Intermediate.new(user_id: user.id, care_user_id: @care_user.id, indication: 0)
         intermediate.save!
       end
+
       flash[:success] = '新規作成に成功しました。'
       send_message = "新規の利用者が登録されました。ご確認をお願い致します"
       CareUser.broad_push(send_message)
