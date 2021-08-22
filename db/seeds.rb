@@ -33,7 +33,7 @@ CareUser.all.each do |care_user|
     Intermediate.create!(
       user_id: user.id,
       care_user_id: care_user.id,
-      indication: 0
+      indication: 1
     )
   end
 end 

@@ -33,7 +33,7 @@ class CareUsersController < ApplicationController
       # User.all.select(:id)
       # =>  <User ~ id: 1>
       user_ids.each do |user|
-        intermediate = Intermediate.new(user_id: user.id, care_user_id: @care_user.id, indication: 0)
+        intermediate = Intermediate.new(user_id: user.id, care_user_id: @care_user.id, indication: 1)
         intermediate.save!
       end
       flash[:success] = '新規作成に成功しました。'
