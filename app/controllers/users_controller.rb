@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def show
     @care_users = CareUser.all
-    @count = Intermediate.where(user_id: current_user.id).size
+    @count = Intermediate.where(user_id: current_user.id, indication: 1).size
   end
 
   def index 
