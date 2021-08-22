@@ -1,0 +1,79 @@
+<% provide(:title, '利用者一覧') %>
+<h1>利用者一覧</h1>
+
+<div class="text">
+  <p>
+    未確認or新規 →
+      <button class="btn-primary btn-sm" disabled>確認</button>
+    確認後更新 →
+      <button button class="btn-success btn-sm" disabled>確認</button>
+  </p>
+</div>
+<h5>
+<% if @count.present? && @care_users.current_page  %>
+  <p class="sign"><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします。"%></p>
+<% end %>
+</h5>
+
+
+<div class="search">
+  <%= search_form_for @q, url: care_users_search_path do |f| %>
+    <%= f.search_field :name_or_department_cont, class: "form-control",placeholder: "name" %><br>
+    <div class="search1">
+      <%= f.radio_button :department_cont, '本店' %>本店
+      <%= f.radio_button :department_cont, '上高畑' %>上高畑
+      <%= f.submit 'search'%>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-sm table-hover" id="table-care_users">
+    <thead>
+      <tr>
+       <th></th>
+        <th>kana</th>
+        <th>name</th>
+        <th>grade</th>
+        <th>department</th>
+        <th>confirmation</th>
+      </tr>
+    </thead>
+    <% @care_users.each do |care_user| %>
+      <tr>
+        <td>
+          <% if care_user.image? %>
+            <img src='<%= care_user.image %>' class="index_icon" alt="ユーザーアイコン">
+          <% else %>
+            <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
+          <% end %>
+        </td>
+        <td><%= link_to care_user.name, care_user %></td>
+        <td><%= care_user.grade %></td>
+        <td><%= care_user.department %></td>
+        <td>
+        <div class="index_btn">
+          <%= form_with(model: care_user, url: care_user_intermediate_path(care_user_id: care_user.id, id: care_user.intermediates[0].id ), local: true) do |form| %>
+            <%= hidden_field_tag :indication, "確認済" %>
+            <% if intermediate_indication(care_user.id) == "確認済" %>
+              <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
+            <% elsif intermediate_indication(care_user.id) == "更新後未確認" %>
+              <%= form.submit "確認", class: "btn btn-success " %>
+            <% elsif intermediate_indication(care_user.id) == "未確認" %>
+              <%= form.submit "確認", class: "btn btn-primary " %>
+            <% end %>
+          <% end %>
+        </div>
+        </td>
+         <td>
+          <% if current_user.admin? %>
+            <div class="index_btn">
+              <%= link_to  "編集", edit_care_user_path(id: care_user.id), method: :get, class: "btn btn-sm btn-primary" %>
+              <%= link_to "削除", care_user_path(id: care_user.id), method: :delete,data: { confirm: "削除してよろしいですか？" },class: "btn btn-sm btn-danger" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate (@care_users) %>
+</div> 

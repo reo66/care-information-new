@@ -1,7 +1,5 @@
 <% provide(:title, '利用者検索結果') %>
-
 <h1>検索結果</h1>
-
 <div class="text">
   <p>
     未確認or新規 →
@@ -10,8 +8,6 @@
       <button button class="btn-success btn-sm" disabled>確認</button>
   </p>
 </div>
-
-
 <%#--if @results.present? --#%>
 <%#--  <p><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします"%>
 <%# </p> %>
@@ -21,17 +17,15 @@
   <p class="sign"><%= "更新された利用者が#{@count.count}名います。再度確認をお願いします"%></p>
 <% end %>
 </h5>
-
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
-      <tr>
+    <tr>
         <th></th>
         <th>name</th>
         <th>grade</th>
         <th>department</th>        
         <th>confirmation</th>
-
       </tr>
     </thead>
     <% @results.each do |care_user| %>
@@ -48,16 +42,13 @@
           <td><%= care_user.department %></td>
           <td>
             <div class="index_btn">
-              <%= form_with(model: Intermediate, url: user_intermediates_path(current_user), local: true) do |form| %>
-                <%= hidden_field_tag :user_id, current_user.id %>
-                <%= hidden_field_tag :care_user_id, care_user.id %>
-                <%= hidden_field_tag :confirmation, true %>
-                <%= hidden_field_tag :indication, "" %>
-                <% if Intermediate.exists?(user_id: current_user,care_user_id: care_user.id,confirmation: true) %>
+             <%= form_with(model: care_user, url: care_user_intermediate_path(care_user_id: care_user.id, id: care_user.intermediates[0].id ), local: true) do |form| %>
+                <%= hidden_field_tag :indication, "確認済" %>
+                <% if intermediate_indication(care_user.id) == "確認済" %>
                   <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>
-                <% elsif Intermediate.exists?(user_id: current_user,care_user_id: care_user.id, confirmation: false, indication: "更新") %>
+                  <% elsif intermediate_indication(care_user.id) == "更新後未確認" %>
                   <%= form.submit "確認", class: "btn btn-success " %>
-                <% else %>
+                  <% elsif intermediate_indication(care_user.id) == "未確認" %>
                   <%= form.submit "確認", class: "btn btn-primary " %>
                 <% end %>
               <% end %>
@@ -67,6 +58,5 @@
       <tbody>
     <% end %>
   </table>
+<p><%= link_to "back", care_users_path, class: "btn btn-default " %></p>
 
-
-<p><%= link_to "back",care_users_edit_index_user_path(current_user), class: "btn btn-default " %></p>

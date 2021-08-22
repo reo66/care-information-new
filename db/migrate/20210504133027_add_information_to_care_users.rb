@@ -1,7 +1,7 @@
 class AddInformationToCareUsers < ActiveRecord::Migration[5.2]
   def change
 
-    # 学年
+    # 学
     add_column :care_users, :grade, :string
     # 契約日数
     add_column :care_users, :contract, :integer
