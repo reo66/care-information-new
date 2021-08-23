@@ -67,9 +67,18 @@ class CareUsersController < ApplicationController
   end
 
   def search
+    array = []
     @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC')
-    @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
+    @results.each do |care_user|
+      array.push({
+        # ひとまずnameが出るかをテスト
+        name: care_user.name,
+      })
     end
+    @care_user = Kaminari.paginate_array(array).page(params[:page]).per(4)
+    @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
+  end
+
 
     private
 
