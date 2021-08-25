@@ -13,10 +13,10 @@
       <%= f.select :department, [["本店","本店"],["上高畑","上高畑"]],{include_blank: "所属店舗を選択"},{class: "form-control", required: true } %>
 
       <span class="label label-danger">必須</span> <%= f.label :name, class: "label-care-user-new", id: "label" %>
-      <%= f.text_field :name, class: "form-control" , required: true ,id: "name" %>
+      <%= f.text_field :name, {class: "form-control" , required: true ,id: "name"} %>
 
       <span class="label label-danger">必須</span> <%= f.label :kana, class: "label-care-user-new", id: "label" %>
-      <%= f.text_field :kana, class: "form-control" ,placeholder: "自動入力されます" ,id: "kana" %>
+      <%= f.text_field :kana, {class: "form-control" ,placeholder: "自動入力されます" ,id: "kana"} %>
 
 
       <%= f.label :age, class: "label-care-user-new", id: "label" %>
@@ -106,11 +106,17 @@
 </div>
 
 
+
 <script>
 
 // フリガナ自動入力
 
- 
+$(document).ready(
+  function() {
+      $.fn.autoKana('#name', '#kana',  {katakana : true  });
+      });
+
+
     //     $(function() {
     //         $.fn.autoKana('#name', '#kana', {
     //             katakana : true  //true：カタカナ、false：ひらがな（デフォルト）

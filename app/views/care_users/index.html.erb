@@ -30,7 +30,7 @@
   <table class="table table-sm table-hover" id="table-care_users">
     <thead>
       <tr>
-       <th></th>
+        <th></th>
         <th>kana</th>
         <th>name</th>
         <th>grade</th>
@@ -64,7 +64,7 @@
           <% end %>
         </div>
         </td>
-         <td>
+        <td>
           <% if current_user.admin? %>
             <div class="index_btn">
               <%= link_to  "編集", edit_care_user_path(id: care_user.id), method: :get, class: "btn btn-sm btn-primary" %>

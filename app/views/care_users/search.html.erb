@@ -28,7 +28,7 @@
         <th>confirmation</th>
       </tr>
     </thead>
-    <% @results.each do |care_user| %>
+    <% @care_user.each do |care_user| %>
       <tbody>
         <tr>
           <td>  
@@ -42,7 +42,7 @@
           <td><%= care_user.department %></td>
           <td>
             <div class="index_btn">
-             <%= form_with(model: care_user, url: care_user_intermediate_path(care_user_id: care_user.id, id: care_user.intermediates[0].id ), local: true) do |form| %>
+            <%= form_with(model: care_user, url: care_user_intermediate_path(care_user_id: care_user.id, id: care_user.intermediates[0].id ), local: true) do |form| %>
                 <%= hidden_field_tag :indication, "確認済" %>
                 <% if intermediate_indication(care_user.id) == "確認済" %>
                   <%= form.submit "確認済", disabled: true,class: "btn btn-default " %>

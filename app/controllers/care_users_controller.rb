@@ -75,8 +75,9 @@ class CareUsersController < ApplicationController
         name: care_user.name,
       })
     end
-    @care_user = Kaminari.paginate_array(array).page(params[:page]).per(4)
+    @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
+     
   end
 
 
