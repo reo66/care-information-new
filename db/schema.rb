@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
     t.string "image"
     t.string "department", null: false
     t.string "name", null: false
+    t.string "kana"
     t.integer "age"
     t.integer "gender"
     t.string "school"
