@@ -6,12 +6,10 @@
     
     <%= stylesheet_link_tag    'application', media: 'all',
                               'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application',
-                              'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="app/assets/javascripts/jquery.autoKana.js"></script>
-                              
+<%# <script src="app/assets/javascripts/jquery.autoKana.js"></script> %>
 
     <!-- HTML shimがこの1行で収まる -->
     <%= render 'layouts/shim' %>
@@ -26,6 +24,7 @@
 
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
+      <%= yield :footer %>
     </div>
   </body>
 </html>
