@@ -19,9 +19,10 @@ end
 
 
 30.times do |n|
-  name  = Faker::Name.name
+  gimei = Gimei.new
   CareUser.create!(
-    name: name,
+    kana: gimei.katakana,
+    name: gimei.name.kanji,
     department: "本店",
     grade: "未就学",
   )
