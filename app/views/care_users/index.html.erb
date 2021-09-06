@@ -31,11 +31,11 @@
     <thead>
       <tr>
         <th></th>
-        <th>kana</th>
-        <th>name</th>
-        <th>grade</th>
-        <th>department</th>
-        <th>confirmation</th>
+        <th><%= sort_link(@q, :kana, "フリガナ") %></th>
+        <th>名前</th>
+        <th>学年</th>
+        <th><%= sort_link(@q, :department, "Department") %></th>
+        <th></th>
       </tr>
     </thead>
     <% @care_users.each do |care_user| %>

@@ -18,12 +18,22 @@ end
 
 
 
-30.times do |n|
+10.times do |n|
   gimei = Gimei.new
   CareUser.create!(
     kana: gimei.katakana,
     name: gimei.name.kanji,
     department: "本店",
+    grade: "未就学",
+  )
+end
+
+10.times do |n|
+  gimei = Gimei.new
+  CareUser.create!(
+    kana: gimei.katakana,
+    name: gimei.name.kanji,
+    department: "上高畑",
     grade: "未就学",
   )
 end
