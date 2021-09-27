@@ -5,8 +5,9 @@ class CareUsersController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
   def index
-    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC')
+    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', 'care_users.kana')
     @count = Intermediate.where(user_id: current_user.id, indication: "更新後未確認")
+    @kana = CareUser.all.order(kana: "ASC")
   end
 
   def new

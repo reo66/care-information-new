@@ -31,7 +31,7 @@
     <thead>
       <tr>
         <th></th>
-        <th><%= sort_link(@q, :kana, "フリガナ") %></th>
+        <th> <%= link_to "フリガナ", care_users_path(kana: @kana) %></th>
         <th>名前</th>
         <th>学年</th>
         <th><%= sort_link(@q, :department, "Department") %></th>
