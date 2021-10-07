@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'care_user/:care_user_id/user/:id', to: 'care_users#addition' , as: :addition
   
   get '/care_users/search', to: 'care_users#search'
+  get '/care_users/click', to: 'care_users#click'
 
   resources :users, except: :new do
     collection do

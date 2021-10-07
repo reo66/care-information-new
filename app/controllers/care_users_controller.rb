@@ -10,6 +10,10 @@ class CareUsersController < ApplicationController
     @kana = CareUser.all.order(kana: "ASC")
   end
 
+  def click(e)
+    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC”,“care_users.kana#{ASK or DISC}")
+  end
+
   def new
     @care_user = CareUser.new
     @use_day = $days_of_the_week
