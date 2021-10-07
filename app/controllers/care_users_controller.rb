@@ -1,19 +1,37 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit,:update, :destroy]
-  before_action :set_q, only: [:index, :search]
+  before_action :set_q, only: [:index, :click, :search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
   def index
     @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', 'care_users.kana')
     @count = Intermediate.where(user_id: current_user.id, indication: "更新後未確認")
     @kana = CareUser.all.order(kana: "ASC")
+
+    @order = "DESC"
+    
+ end
+
+ def click
+
+  # binding.pry
+  # params = {id: "DESK"}
+  # params[:id] => "DESK"
+
+  order = params[:id]
+
+  @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.kana #{order}")
+
+  if order == "ASC"
+    @order = "DESC"
+  elsif order == "DESC"
+    @order = "ASC"
   end
 
-  def click(e)
-    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC”,“care_users.kana#{ASK or DISC}")
-  end
+  render "care_users/index"
 
+end
   def new
     @care_user = CareUser.new
     @use_day = $days_of_the_week
