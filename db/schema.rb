@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_222634) do
     t.string "school"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "grade"
+    t.integer "grade"
     t.integer "contract"
     t.string "use_day"
     t.string "house"
