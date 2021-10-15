@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   
   get '/care_users/search', to: 'care_users#search'
   get '/care_users/click', to: 'care_users#click'
+  get '/care_users/click_a', to: 'care_users#click_a'
 
   resources :users, except: :new do
     collection do

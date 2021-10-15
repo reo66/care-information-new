@@ -18,7 +18,7 @@ end
 
 
 
-10.times do |n|
+5.times do |n|
   gimei = Gimei.new
   CareUser.create!(
     kana: gimei.katakana,
@@ -28,13 +28,33 @@ end
   )
 end
 
-10.times do |n|
+5.times do |n|
   gimei = Gimei.new
   CareUser.create!(
     kana: gimei.katakana,
     name: gimei.name.kanji,
     department: "上高畑",
     grade: "未就学",
+  )
+end
+
+5.times do |n|
+  gimei = Gimei.new
+  CareUser.create!(
+    kana: gimei.katakana,
+    name: gimei.name.kanji,
+    department: "本店",
+    grade: "小1",
+  )
+end
+
+5.times do |n|
+  gimei = Gimei.new
+  CareUser.create!(
+    kana: gimei.katakana,
+    name: gimei.name.kanji,
+    department: "上高畑",
+    grade: "中1",
   )
 end
 

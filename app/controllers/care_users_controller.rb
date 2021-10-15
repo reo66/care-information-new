@@ -1,7 +1,7 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit,:update, :destroy]
-  before_action :set_q, only: [:index, :click, :search]
+  before_action :set_q, only: [:index, :click, :click_a,:search]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
   def index
@@ -32,6 +32,30 @@ class CareUsersController < ApplicationController
   render "care_users/index"
 
 end
+
+
+def click_a
+
+  # binding.pry
+  # params = {id: "DESK"}
+  # params[:id] => "DESK"
+
+  grade = params[:id]
+
+  @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.grade #{grade}")
+
+  if grade == "ASC"
+    @grade = "DESC"
+  elsif grade == "DESC"
+    @grade = "ASC"
+  end
+
+  render "care_users/index"
+
+end
+
+
+
   def new
     @care_user = CareUser.new
     @use_day = $days_of_the_week
@@ -100,7 +124,7 @@ end
     end
     @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
-     
+    
   end
 
 
