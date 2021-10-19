@@ -10,50 +10,56 @@ class CareUsersController < ApplicationController
     @kana = CareUser.all.order(kana: "ASC")
 
     @order = "DESC"
-    
- end
-
- def click
-
-  # binding.pry
-  # params = {id: "DESK"}
-  # params[:id] => "DESK"
-
-  order = params[:id]
-
-  @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.kana #{order}")
-
-  if order == "ASC"
-    @order = "DESC"
-  elsif order == "DESC"
-    @order = "ASC"
-  end
-
-  render "care_users/index"
-
-end
-
-
-def click_a
-
-  # binding.pry
-  # params = {id: "DESK"}
-  # params[:id] => "DESK"
-
-  grade = params[:id]
-
-  @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.grade #{grade}")
-
-  if grade == "ASC"
     @grade = "DESC"
-  elsif grade == "DESC"
-    @grade = "ASC"
+    @sort = {order: @order, grade: @grade}
+
   end
 
-  render "care_users/index"
+  def click
 
-end
+    # binding.pry
+    # params = {id: "DESK"}
+    # params[:id] => "DESK"
 
+    order = params[:order]
+    grade = params[:grade]
+
+    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.kana #{order}")
+
+    if order == "ASC"
+      order = "DESC"
+    elsif order == "DESC"
+      order = "ASC"
+    end
+
+    @sort = {order: order, grade: grade}
+
+    render "care_users/index"
+
+  end
+
+
+  def click_a
+
+    # binding.pry
+    # params = {id: "DESK"}
+    # params[:id] => "DESK"
+
+    grade = params[:grade]
+    order = params[:order]
+
+    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.grade #{grade}")
+
+    if grade == "ASC"
+      grade = "DESC"
+    elsif grade == "DESC"
+      grade = "ASC"
+    end
+
+    @sort = {order: order, grade: grade}
+    render "care_users/index"
+
+  end
 
 
   def new
