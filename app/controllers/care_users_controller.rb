@@ -1,7 +1,7 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit,:update, :destroy]
-  before_action :set_q, only: [:index, :click, :click_a,:search]
+  before_action :set_q, only: [:index, :click, :click_a,:search, :click_search, ]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
   def index
@@ -131,6 +131,41 @@ class CareUsersController < ApplicationController
     @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
     
+  end
+
+
+  def click_search
+
+    # binding.pry
+    # params = {id: "DESK"}
+    # params[:id] => "DESK"
+    array = []
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC')
+    @results.each do |care_user|
+      array.push({
+        # ひとまずnameが出るかをテスト
+        name: care_user.name,
+      })
+    end
+
+
+    order = params[:order]
+    grade = params[:grade]
+
+    @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
+    @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
+
+
+    if order == "ASC"
+      order = "DESC"
+    elsif order == "DESC"
+      order = "ASC"
+    end
+
+    @sort = {order: order, grade: grade}
+
+    render "care_users/search"
+
   end
 
 
