@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/care_users/click', to: 'care_users#click'
   get '/care_users/click_a', to: 'care_users#click_a'
   get '/care_users/click_search', to: 'care_users#click_search'
+  get '/care_users/click_search_a', to: 'care_users#click_search_a'
+
 
 
   resources :users, except: :new do
