@@ -121,7 +121,7 @@ class CareUsersController < ApplicationController
 
   def search
     array = []
-    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC')
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', 'care_users.kana')
     @results.each do |care_user|
       array.push({
         # ひとまずnameが出るかをテスト
@@ -131,16 +131,26 @@ class CareUsersController < ApplicationController
     @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
     
+
+    @order = "DESC"
+    @grade = "DESC"
+    @sort = {order: @order, grade: @grade}
+
+
   end
 
 
   def click_search
 
+    order = params[:order]
+    grade = params[:grade]
+
+
     # binding.pry
     # params = {id: "DESK"}
     # params[:id] => "DESK"
     array = []
-    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC')
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.kana #{order}")
     @results.each do |care_user|
       array.push({
         # ひとまずnameが出るかをテスト
@@ -148,9 +158,6 @@ class CareUsersController < ApplicationController
       })
     end
 
-
-    order = params[:order]
-    grade = params[:grade]
 
     @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
