@@ -150,7 +150,7 @@ class CareUsersController < ApplicationController
     # params = {id: "DESK"}
     # params[:id] => "DESK"
     array = []
-    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.kana #{grade}")
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.kana #{order}")
     @results.each do |care_user|
       array.push({
         # ひとまずnameが出るかをテスト
@@ -178,15 +178,15 @@ class CareUsersController < ApplicationController
 
   def click_search_a
 
-    order = params[:order]
     grade = params[:grade]
+    order = params[:order]
 
 
     # binding.pry
     # params = {id: "DESK"}
     # params[:id] => "DESK"
     array = []
-    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.grade #{order}")
+    @results = @q.result.where(department: params[:q][:name_or_department_cont][:department_cont]).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.grade #{grade}")
     @results.each do |care_user|
       array.push({
         # ひとまずnameが出るかをテスト
@@ -199,10 +199,10 @@ class CareUsersController < ApplicationController
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
 
 
-    if order == "ASC"
-      order = "DESC"
-    elsif order == "DESC"
-      order = "ASC"
+    if grade == "ASC"
+      grade = "DESC"
+    elsif grade == "DESC"
+      grade = "ASC"
     end
 
     @sort = {order: order, grade: grade}
