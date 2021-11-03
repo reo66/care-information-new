@@ -130,12 +130,11 @@ class CareUsersController < ApplicationController
     end
     @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
     @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
-    
 
     @order = "DESC"
     @grade = "DESC"
-    @sort = {order: @order, grade: @grade}
-
+    q = {"name_or_department_cont": params[:q]["name_or_department_cont"], "department_cont": params[:q]["department_cont"]}
+    @sort = {order: @order, grade: @grade, q: q}
 
   end
 
@@ -169,7 +168,8 @@ class CareUsersController < ApplicationController
       order = "ASC"
     end
 
-    @sort = {order: order, grade: grade}
+    q = {"name_or_department_cont": params[:q]["name_or_department_cont"], "department_cont": params[:q]["department_cont"]}
+    @sort = {order: order, grade: grade, q: q}
 
     render "care_users/search"
 
@@ -186,7 +186,7 @@ class CareUsersController < ApplicationController
     # params = {id: "DESK"}
     # params[:id] => "DESK"
     array = []
-    @results = @q.result.where(department: params[:q][:name_or_department_cont][:department_cont]).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.grade #{grade}")
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.grade #{grade}")
     @results.each do |care_user|
       array.push({
         # ひとまずnameが出るかをテスト
@@ -205,7 +205,8 @@ class CareUsersController < ApplicationController
       grade = "ASC"
     end
 
-    @sort = {order: order, grade: grade}
+    q = {"name_or_department_cont": params[:q]["name_or_department_cont"], "department_cont": params[:q]["department_cont"]}
+    @sort = {order: order, grade: grade, q: q}
 
     render "care_users/search"
 
