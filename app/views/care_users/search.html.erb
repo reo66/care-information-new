@@ -23,9 +23,10 @@
     <tr>
         <th></th>
         <th><%= link_to "フリガナ", care_users_click_search_path(@sort) %></th>
+        <th>名前</th>
         <th><%= link_to "学年", care_users_click_search_a_path(@sort) %></th>        
-        <th>department</th>        
-        <th>confirmation</th>
+        <th>department</th>  
+        <th></th>      
       </tr>
     </thead>
     <% @care_user.each do |care_user| %>
@@ -37,6 +38,7 @@
           <% else %>
             <%= image_tag src='picture-3651039_1920.png', class: "index_icon", alt: "ユーザーアイコン" %>
           <% end %>
+          <td><%= care_user.kana %></td>
           <td><%= link_to care_user.name, care_user %></td>
           <td><%= care_user.grade %></td>
           <td><%= care_user.department %></td>
