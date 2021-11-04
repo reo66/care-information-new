@@ -1,7 +1,7 @@
 class CareUsersController < ApplicationController
 
   before_action :set_care_user, only: [:show, :edit,:update, :destroy]
-  before_action :set_q, only: [:index, :click, :click_a,:search, :click_search, :click_search_a]
+  before_action :set_q, only: [:index, :click, :click_a, :click_b, :search, :click_search, :click_search_a, :click_search_b]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy ]
 
   def index
@@ -11,7 +11,9 @@ class CareUsersController < ApplicationController
 
     @order = "DESC"
     @grade = "DESC"
-    @sort = {order: @order, grade: @grade}
+    @department = "DESC"
+
+    @sort = {order: @order, grade: @grade, department: @department}
 
   end
 
@@ -23,6 +25,7 @@ class CareUsersController < ApplicationController
 
     order = params[:order]
     grade = params[:grade]
+    department = params[:department] 
 
     @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.kana #{order}")
 
@@ -32,7 +35,7 @@ class CareUsersController < ApplicationController
       order = "ASC"
     end
 
-    @sort = {order: order, grade: grade}
+    @sort = {order: order, grade: grade, department: department} 
 
     render "care_users/index"
 
@@ -47,6 +50,7 @@ class CareUsersController < ApplicationController
 
     grade = params[:grade]
     order = params[:order]
+    department = params[:department] 
 
     @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.grade #{grade}")
 
@@ -56,10 +60,35 @@ class CareUsersController < ApplicationController
       grade = "ASC"
     end
 
-    @sort = {order: order, grade: grade}
+    @sort = {order: order, grade: grade, department: department} 
     render "care_users/index"
 
   end
+
+
+  def click_b
+
+    # binding.pry
+    # params = {id: "DESK"}
+    # params[:id] => "DESK"
+
+    grade = params[:grade]
+    order = params[:order]
+    department = params[:department] 
+
+    @care_users = CareUser.page(params[:page]).per(10).joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order("intermediates.indication DESC", "care_users.department #{department}")
+
+    if department == "ASC"
+      department = "DESC"
+    elsif department == "DESC"
+      department = "ASC"
+    end
+
+    @sort = {order: order, grade: grade, department: department} 
+    render "care_users/index"
+
+  end
+
 
 
   def new
@@ -133,8 +162,10 @@ class CareUsersController < ApplicationController
 
     @order = "DESC"
     @grade = "DESC"
+    @department = "DESC"
+
     q = {"name_or_department_cont": params[:q]["name_or_department_cont"], "department_cont": params[:q]["department_cont"]}
-    @sort = {order: @order, grade: @grade, q: q}
+    @sort = {order: @order, grade: @grade, department: @department, q: q}
 
   end
 
@@ -211,6 +242,44 @@ class CareUsersController < ApplicationController
     render "care_users/search"
 
   end
+
+  def click_search_b
+
+    grade = params[:grade]
+    order = params[:order]
+    department = params[:department]
+
+
+    # binding.pry
+    # params = {id: "DESK"}
+    # params[:id] => "DESK"
+    array = []
+    @results = @q.result.joins(:intermediates).includes(:intermediates).where(intermediates: {user_id: current_user.id}).order('intermediates.indication DESC', "care_users.department #{department}")
+    @results.each do |care_user|
+      array.push({
+        # ひとまずnameが出るかをテスト
+        name: care_user.name,
+      })
+    end
+
+
+    @care_user = Kaminari.paginate_array(@results).page(params[:page]).per(10)
+    @count = @results.joins(:intermediates).includes(:intermediates).select("intermediates.count").where(intermediates: { user_id: current_user.id, indication: "更新後未確認" })
+
+
+    if department == "ASC"
+      department = "DESC"
+    elsif department == "DESC"
+      department = "ASC"
+    end
+
+    q = {"name_or_department_cont": params[:q]["name_or_department_cont"], "department_cont": params[:q]["department_cont"]}
+    @sort = {order: order, grade: grade, department: department, q: q}
+
+    render "care_users/search"
+
+  end
+
 
 
 

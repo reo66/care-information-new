@@ -17,8 +17,11 @@ Rails.application.routes.draw do
   get '/care_users/search', to: 'care_users#search'
   get '/care_users/click', to: 'care_users#click'
   get '/care_users/click_a', to: 'care_users#click_a'
+  get '/care_users/click_b', to: 'care_users#click_b'
   get '/care_users/click_search', to: 'care_users#click_search'
   get '/care_users/click_search_a', to: 'care_users#click_search_a'
+  get '/care_users/click_search_b', to: 'care_users#click_search_b'
+
 
 
 
